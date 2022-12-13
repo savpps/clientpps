@@ -1,0 +1,241 @@
+<div class="card mb-5 mb-xl-8">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Liste des services</span>
+        </h3>
+        <div class="card-toolbar">
+            <a href="javascript:void(0); " (click)="open(content)" class="btn btn-sm btn-light-primary">
+              <span
+                      [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+                      class="svg-icon svg-icon-3"
+              ></span>
+                Ajouter service
+            </a>
+        </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+            <!-- begin::Table -->
+            <table class="table align-middle gs-0 gy-4">
+                <!-- begin::Table head -->
+                <thead>
+                <tr class="fw-bolder text-muted bg-light">
+                    <th class="ps-4 min-w-100px rounded-start">Index</th>
+                    <th class="min-w-150px">Nom de service</th>
+                    <th class="min-w-125px">Prix de service</th>
+                    <th class="min-w-160px text-muted">Type de service</th>
+                    <th class="min-w-150px ps-4">Status</th>
+                    <th class="min-w-150px text-center rounded-end">Actions</th>
+                </tr>
+                </thead>
+                <!-- end::Table head -->
+                <!-- begin::Table body -->
+                <tbody>
+                <tr *ngFor="let service of services,let index = index">
+                    <td>
+                        <div class="ps-8 d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <span class="text-muted fw-bold text-muted d-block fs-7">
+                                  {{index+1}}
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="text-muted fw-bold text-muted d-block fs-7">{{service.name}}</span>
+                    </td>
+                    <td>
+                        <span class="ps-2 text-muted fw-bold text-muted d-block fs-7"
+                        >{{service.amount}} FCFA</span
+                        >
+                    </td>
+                    <td>
+                      <span class="ps-1 fw-bold text-muted d-block fs-7"
+                      >{{service.serviceType}}</span
+                      >
+                  </td>
+                    <td>
+                        <span class="ps-4 badge badge-light-primary fs-7 fw-bold">Approved</span>
+                    </td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                            <span
+                                    [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
+                                    class="svg-icon svg-icon-3"
+                            ></span>
+                        </a>
+                        <a href="javascript:void(0);" (click)="editData(service.id, content)"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                          <span
+                                  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                                  class="svg-icon svg-icon-3"
+                          ></span>
+                        </a>
+                        <a
+                                href="javascript:void(0);" (click)="deleteData(service.id)"
+                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm disabled"
+                        >
+              <span
+                      [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                      class="svg-icon svg-icon-3"
+              ></span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+                <!-- end::Table body -->
+            </table>
+            <!-- end::Table -->
+        </div>
+        <!-- end::Table container -->
+    </div>
+    <!-- begin::Body -->
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" >
+            <span *ngIf="isUpdate">Modification du Service </span>
+            <span *ngIf="!isUpdate">Creation de Service</span>
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form ngForm [formGroup]="serviceForm"
+              novalidate="novalidate"
+              id="id_service_form"
+              (ngSubmit)="saveData()">
+            <div class="mt-3">
+                <label for="name">Nom du Service</label>
+                <input id="name" type="text"
+                       formControlName="name"
+                       name="name"
+                       class="form-control form-control-sm form-control-solid"
+                       [ngClass]="{
+                       'is-invalid': serviceForm.controls['name'].invalid,
+                        'is-valid': serviceForm.controls['name'].valid
+                          }"
+                >
+                <input id="id" type="hidden"
+                       formControlName="id"
+                       name="id"
+                       class="form-control form-control-sm form-control-solid"
+                       [ngClass]="{
+                       'is-invalid': serviceForm.controls['id'].invalid,
+                        'is-valid': serviceForm.controls['id'].valid
+                          }"
+                >
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le nom du service ne peut pas etre ignoré',
+                  control: serviceForm.controls['name']
+                }"
+              >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="amount">Prix du service</label>
+                <input id="amount" type="number"
+                       formControlName="amount"
+                       class="form-control form-control-sm form-control-solid"
+                       name="amount"
+                       [ngClass]="{
+                       'is-invalid': serviceForm.controls['amount'].invalid,
+                        'is-valid': serviceForm.controls['amount'].valid
+                          }"
+                >
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Vous devez donnez un prix a ce service',
+                  control: serviceForm.controls['amount']
+                }"
+              >
+                </ng-container>
+            </div>
+
+            <div class="mt-3">
+              <label for="repaymentAmount">Prix de Repayement du segment</label>
+              <input id="repaymentAmount" type="number"
+                     formControlName="repaymentAmount"
+                     class="form-control form-control-sm form-control-solid"
+                     name="repaymentAmount"
+                     [ngClass]="{
+                     'is-invalid': serviceForm.controls['repaymentAmount'].invalid,
+                      'is-valid': serviceForm.controls['repaymentAmount'].valid
+                        }"
+              >
+              <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le prix de repayement est requis',
+                control: serviceForm.controls['repaymentAmount']
+              }"
+              >
+              </ng-container>
+          </div>
+
+            <div class="mt-3">
+                <label for="color">Type de service</label>
+                <select name="serviceType" id="serviceType"
+                class="form-control form-control-sm form-control-solid"
+                formControlName="serviceType"
+                name="serviceType"
+                [ngClass]="{
+                'is-invalid': serviceForm.controls['serviceType'].invalid,
+                'is-valid': serviceForm.controls['serviceType'].valid
+                }"
+                >
+                <option value="">Choisissez un type de service</option>
+                <option value="OTHER">OTHER</option>
+                <option value="PHYSICS">PHYSICS</option>
+
+                </select>
+
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Veuillez choisir un type de service',
+                  control: serviceForm.controls['serviceType']
+                }"
+              >
+                </ng-container>
+            </div>
+            <div class="mt-5">
+                <button type="submit" class="btn btn-sm btn-primary" >Enregistrer</button>
+                <button type="button" class="btn btn-sm btn-dark" style="margin-left: 10px"
+                        (click)="modal.close('Save click')">Fermer</button>
+            </div>
+        </form>
+    </div> 
+</ng-template>
+
+
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+<ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <div class="fv-help-block">
+        <span role="alert">{{ message }}</span>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

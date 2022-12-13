@@ -1,0 +1,372 @@
+<div class="card mb-5 mb-xl-8">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Liste des segments</span>
+        </h3>
+        <div class="card-toolbar">
+            <a href="javascript:void(0); " (click)="open(content)" class="btn btn-sm btn-light-primary">
+              <span
+                      [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+                      class="svg-icon svg-icon-3"
+              ></span>
+                Ajouter Segment
+            </a>
+        </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+            <!-- begin::Table -->
+            <table class="table align-middle gs-0 gy-4">
+                <!-- begin::Table head -->
+                <thead>
+                <tr class="fw-bolder text-muted bg-light">
+                    <th class="ps-4 min-w-100px rounded-start">Index</th>
+                    <th class="min-w-125px">Nom de segment</th>
+                    <th class="min-w-125px">Prix de segment</th>
+                    <th class="min-w-150px">Status</th>
+                    <th class="min-w-150px">Couleur</th>
+                    <th class="min-w-200px text-end rounded-end">Actions</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <!-- end::Table head -->
+                <!-- begin::Table body -->
+                <tbody>
+                <tr *ngFor="let segment of segments;let index = index;">
+                    <td class="ps-8">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <span class="text-muted fw-bold text-muted d-block fs-7">
+                                  {{index + 1}}
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="text-muted fw-bold text-muted d-block fs-7">{{segment.name}}</span>
+                    </td>
+                    <td>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >{{segment.amount}} FCFA</span
+                        >
+                    </td>
+                    <td>
+                        <span class="badge badge-light-primary fs-7 fw-bold">Activé</span>
+                    </td>
+                    <td>
+                        <input readonly disabled type="color" value={{segment.color}}>
+                    </td>
+                    <td class="text-end">
+                        <a [routerLink]="['/service-segment/segment/', segment.id]"
+                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> </span>
+                        </a>
+                        <a href="javascript:void(0);" (click)="addService(segment.id, add)"
+                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                           <span
+                                   [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
+                                   class="svg-icon svg-icon-3"
+                           ></span>
+                        </a>
+                        <a href="javascript:void(0);" (click)="editData(segment.id, content)"
+                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                          <span
+                                  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                                  class="svg-icon svg-icon-3"
+                          ></span>
+                        </a>
+                        <a
+                                href="javascript:void(0);"
+                                (click)="deleteData(segment.id)"
+                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                        >
+                          <span
+                                  [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                                  class="svg-icon svg-icon-3"
+                          ></span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+                <!-- end::Table body -->
+            </table>
+            <!-- end::Table -->
+        </div>
+        <!-- end::Table container -->
+    </div>
+    <!-- begin::Body -->
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            <span *ngIf="isUpdate">Modification du segment</span>
+            <span *ngIf="!isUpdate">Creation de segment</span>
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="segmentForm"
+              novalidate="novalidate"
+              id="kt_login_signin_form"
+              (ngSubmit)="saveData()">
+            <div class="mt-3">
+                <label for="name">Nom du segment</label>
+                <input id="name" type="text"
+                       formControlName="name"
+                       name="name"
+                       class="form-control form-control-sm form-control-solid"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['name'].invalid,
+                        'is-valid': segmentForm.controls['name'].valid
+                          }"
+                >
+                <input id="id" type="hidden"
+                       formControlName="id"
+                       name="id"
+                       class="form-control form-control-sm form-control-solid"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['id'].invalid,
+                        'is-valid': segmentForm.controls['id'].valid
+                          }"
+                >
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le nom du segment est requis',
+                  control: segmentForm.controls['name']
+                }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="amount">Prix du segment</label>
+                <input id="amount" type="number"
+                       formControlName="amount"
+                       class="form-control form-control-sm form-control-solid"
+                       name="amount"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['amount'].invalid,
+                        'is-valid': segmentForm.controls['amount'].valid
+                          }"
+                >
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le prix du segment est requis',
+                  control: segmentForm.controls['amount']
+                }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="repaymentAmount">Prix de Repayement du segment</label>
+                <input id="repaymentAmount" type="number"
+                       formControlName="repaymentAmount"
+                       class="form-control form-control-sm form-control-solid"
+                       name="repaymentAmount"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['repaymentAmount'].invalid,
+                        'is-valid': segmentForm.controls['repaymentAmount'].valid
+                          }"
+                >
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le prix de repayement est requis',
+                  control: segmentForm.controls['repaymentAmount']
+                }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="period">Période de validiter</label>
+                <input id="period" type="number"
+                       formControlName="period"
+                       class="form-control form-control-sm form-control-solid"
+                       name="period"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['period'].invalid,
+                        'is-valid': segmentForm.controls['period'].valid
+                          }"
+                >
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Veuillez donner la période de validiter',
+                  control: segmentForm.controls['period']
+                }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="product">Produit du segment</label>
+                <select name="productId" id="product"
+                        formControlName="productId"
+                        class="form-control form-control-sm form-control-solid" [ngClass]="{
+                       'is-invalid': segmentForm.controls['productId'].invalid,
+                        'is-valid': segmentForm.controls['productId'].valid
+                        }">
+                    <option>Selectionnez le produit</option>
+                    <option *ngFor="let product of products" value="{{product.id}}">{{ product.name }}</option>
+                </select>
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Veuillez choisir un produit',
+                  control: segmentForm.controls['productId']
+                }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="color">Couleur du segment</label>
+                <input id="color" type="color"
+                       class="form-control form-control-sm form-control-solid"
+                       formControlName="color"
+                       name="color"
+                       [ngClass]="{
+                       'is-invalid': segmentForm.controls['color'].invalid,
+                        'is-valid': segmentForm.controls['color'].valid
+                        }"
+                >
+            </div>
+            <div class="mt-5">
+                <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+                <button type="button" class="btn btn-sm btn-dark" style="margin-left: 10px"
+                        (click)="modal.close('Save click')">Fermer
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            <span>Assigné un service a ce segment</span>
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="segmentServices!=[]">
+            <span class="badge badge-light-success fs-7 fw-bold mg-1"
+                  *ngFor="let segmentService of segmentServices"> <b>{{segmentService.name}} </b> <span
+                    class="text-primary">{{segmentService.amount}}  FCFA</span></span>
+        </div>
+        <form [formGroup]="segmentForm"
+              novalidate="novalidate"
+              id="kt_login_signin_form" 
+              (ngSubmit)="serviceSegment()">
+            <div class="mt-3">
+                <label for="name">Nom du segment</label>
+                <input id="name" type="text"
+                       formControlName="name"
+                       name="name"
+                       readonly
+                       class="form-control form-control-sm form-control-solid"
+                       [ngClass]="{
+                     'is-invalid': segmentForm.controls['name'].invalid,
+                      'is-valid': segmentForm.controls['name'].valid
+                        }"
+                >
+                <input id="id" type="text"
+                       formControlName="id"
+                       name="id"
+                       readonly
+                       class="form-control form-control-sm form-control-solid"
+                       type="hidden"
+                >
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le nom du segment est requis',
+                control: segmentForm.controls['name']
+              }"
+                >
+                </ng-container>
+            </div>
+            <div class="mt-3">
+                <label for="service">Services</label>
+                <!-- <select name="service" id="service"
+                  class="form-control form-control-sm form-control-solid"
+                  formControlName="service"
+                  name="service"
+                  [ngClass]="{
+                  'is-invalid': segmentForm.controls['service'].invalid,
+                  'is-valid': segmentForm.controls['service'].valid
+                  }"
+
+                  >
+                  <option value="" >Choisissez un service</option>
+                  <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
+
+                </select> -->
+
+                <select name="service" id="service"
+                        class="form-control form-control-sm form-control-solid"
+                        formControlName="service"
+                        name="service"
+                        [ngClass]="{
+              'is-invalid': segmentForm.controls['service'].invalid,
+              'is-valid': segmentForm.controls['service'].valid
+              }">
+                    <option value="">Choisissez un service</option>
+
+                    <option *ngFor="let service of services;" [ngValue]="service.id">
+                        {{service.name}}
+                    </option>
+
+                </select>
+
+                <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Veuillez choisir un type de service',
+                control: segmentForm.controls['amount']
+              }"
+                >
+                </ng-container>
+            </div>
+
+            <div class="mt-5">
+                <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+                <button type="button" class="btn btn-sm btn-dark" style="margin-left: 10px"
+                        (click)="modal.close('Save click')">Fermer
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation"
+>
+    <ng-container
+            *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+    >
+        <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+                <span role="alert">{{ message }}</span>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>
+

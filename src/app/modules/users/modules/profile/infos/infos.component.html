@@ -1,0 +1,181 @@
+
+<div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#kt_account_profile_details"
+      aria-expanded="true"
+      aria-controls="kt_account_profile_details"
+    >
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Détails Profil </h3>
+      </div>
+    </div>
+    <div id="kt_account_profile_details" class="collapse show">
+      <form novalidate="" class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+            [formGroup]="infosForm" 
+            >
+        <div class="card-body border-top p-9">
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Pseudo</label
+                >
+                <div class="col-lg-8 fv-row">
+                  <input readonly
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    formControlName="pseudo"
+                    placeholder="XXXXX"
+                    name="pseudo"
+                    autocomplete="off"
+
+                  />
+                </div>
+              </div><div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Genre</label
+                >
+                <div class="col-lg-8 fv-row">
+                  <input readonly
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Company name"
+                    name="company"
+                    formControlName="genre"
+
+                  />
+                </div>
+              </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Nom complet</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <input readonly
+                    type="text"
+                    class="
+                      form-control form-control-lg form-control-solid
+                      mb-3 mb-lg-0
+                    "
+                    placeholder="Nom "
+                    name="ferst_name"
+                    formControlName="first_name"
+
+                  />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <input readonly
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Prénoms"
+                    name="last_name"
+                    formControlName="last_name"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Profession</label
+            >
+            <div class="col-lg-8 fv-row">
+              <input readonly
+                type="text"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Company name"
+                name="profession"
+                formControlName="profession"
+
+              />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Date de naisssance</label
+            >
+            <div class="col-lg-8 fv-row">
+              <input readonly
+                type="Date"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Company name"
+                name="birthday"
+                formControlName="birthday"
+
+              />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-bold fs-6"
+              ><span class="required">Téléphone Contact </span></label
+            >
+            <div class="col-lg-8 fv-row">
+              <input readonly
+                type="text"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Phone number"
+                name="phone"
+                formControlName="phone"
+
+              />
+              
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-bold fs-6"
+              ><span class="required">E-mail</span></label
+            >
+            <div class="col-lg-8 fv-row">
+              <input readonly
+                type="email"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Company website"
+                name="email"
+                formControlName="email"
+
+              />
+            </div>
+          </div>
+          
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Adresse</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <input readonly
+                    type="text"
+                    class="
+                      form-control form-control-lg form-control-solid
+                      mb-3 mb-lg-0
+                    "
+                    placeholder="Pays "
+                    name="country"
+                    formControlName="country"
+
+                  />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <input readonly
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="ville"
+                    name="town"
+                    formControlName="town"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,67 @@
+<!-- <div class="d-flex flex-column flex-center flex-column-fluid">
+  <div class="d-flex flex-column flex-center text-center p-10">
+    <div class="card card-flush  w-lg-650px py-5">
+      <div class="card-body py-15 py-lg-20">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
+				<!--begin::Logo-->
+				<a href="../../demo1/dist/index.html" class="d-block d-lg-none mx-auto py-20">
+					<img alt="Logo" src="assets/media/logos/default.svg" class="theme-light-show h-25px" />
+					<img alt="Logo" src="assets/media/logos/default-dark.svg" class="theme-dark-show h-25px" />
+				</a>
+				<!--end::Logo-->
+				<!--begin::Aside-->
+				<div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
+
+          <!--begin::Wrapper-->
+          <!--begin::Wrapper-->
+					<div class="d-flex justify-content-between flex-column-fluid flex-column w-100 mw-450px">
+						<!--begin::Header-->
+						<div class="d-flex flex-stack ">
+
+						</div>
+						<!--end::Header-->
+						<!--begin::Body-->
+						<div class="">
+							<!--begin::Form-->
+                      <!--begin::Wrapper-->
+                    <div class="<?php echo $params['wrapperClass']?> p-10">
+                      <router-outlet></router-outlet>
+                    </div>
+                    <!--end::Wrapper-->
+							<!--end::Form-->
+						</div>
+						<!--end::Body-->
+					
+					</div>
+					<!--end::Wrapper-->
+
+          
+      <!--begin::Footer-->
+      <div class="d-flex flex-center flex-wrap px-5">
+        <!--begin::Links-->
+        <div class="d-flex fw-semibold text-primary fs-base">
+          <a href="#" class="px-5" target="_blank">Terms</a>
+  
+          <a href="#" class="px-5" target="_blank">Plans</a>
+  
+          <a href="#" class="px-5" target="_blank">Contact Us</a>
+        </div>
+        <!--end::Links-->
+      </div>
+      <!--end::Footer-->
+				</div>
+				<!--end::Aside-->
+				<!--begin::Body-->
+				<div class="d-none d-lg-flex flex-lg-row-fluid w-50 bgi-size-cover bgi-position-y-center bgi-position-x-start bgi-no-repeat" style="background-image: url(assets/media/auth/bg11.png)"></div>
+				<!--begin::Body-->
+			</div>
+			<!--end::Authentication - Sign-in-->

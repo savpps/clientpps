@@ -1,0 +1,370 @@
+<div class="card mb-5 mb-xl-8">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1" *ngIf="!isUpdate">Add New User</span>
+          <span class="card-label fw-bolder fs-3 mb-1" *ngIf="isUpdate">Modifier les données de l'utilisateur {{userUpdate.username}}</span>
+
+        </h3>
+
+    </div>
+
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+            
+
+          <ng-container *ngIf="hasError">
+            <div class="mb-lg-15 alert alert-danger col-md-6 offset-3">
+              <div class="alert-text font-weight-bold text-center">
+                {{message}}
+              </div>
+            </div>
+          </ng-container>
+
+          <form 
+          class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+          novalidate="novalidate"
+          [formGroup]="userForm"
+          (ngSubmit)="submit()"
+          >
+            <div class="row g-2">
+              <div class="col-md">
+                <div class="form-floating">
+                 
+                  <input type="text" class="form-control" id="username" 
+                  name="username"
+                  placeholder="Donald" 
+                  formControlName="username"
+                  [ngClass]="{
+                    'is-invalid': userForm.controls['username'].invalid,
+                    'is-valid': userForm.controls['username'].valid
+                  }"
+                  >
+
+                  <label for="username">Nom d'utilisateur</label>
+                </div>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le no d utilisateur est obligatoire',
+                  control: userForm.controls['username']
+                }"
+                ></ng-container>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minlength',
+                  message: 'Le no d utilisateur ne doit pas êtres moins de 3 caractères',
+                  control: userForm.controls['username']
+                }"
+                ></ng-container>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minlength',
+                  message: 'Le no d utilisateur ne dépasse pas 20 caractères',
+                  control: userForm.controls['username']
+                }"
+                ></ng-container>
+                
+
+              </div>
+  
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="email"
+                  name="email" 
+                  formControlName="email" 
+                  placeholder="name@example.com" 
+                  [ngClass]="{
+                    'is-invalid': userForm.controls['email'].invalid,
+                    'is-valid': userForm.controls['email'].valid
+                  }"
+                  >
+
+                  <label for="email">Adresse e-mail</label>
+                </div>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Adrese mail obligatoire',
+                  control: userForm.controls['email']
+                }"
+                ></ng-container>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'email',
+                  message: 'Entrer un mail correct',
+                  control: userForm.controls['email']
+                }"
+                ></ng-container>
+
+              </div>
+            </div>
+            <br><br>
+            <div class="row g-2">
+              
+              <div class="col-md ">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="phone"
+                  name="phone" 
+                  placeholder="+22800000000" 
+                  formControlName="phone"
+                  [ngClass]="{
+                    'is-invalid': userForm.controls['phone'].invalid,
+                    'is-valid': userForm.controls['phone'].valid
+                  }"
+                  >
+
+                  <label for="phone">Numéro de téléphone</label>
+              </div>
+              <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le télépjone est obligatoire',
+                control: userForm.controls['phone']
+              }"
+              ></ng-container>
+              <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxlength',
+                message: 'Le télépjone ne doit pas dépassé 18 caractères',
+                control: userForm.controls['phone']
+              }"
+              ></ng-container>
+
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minlength',
+                  message: 'Le mot de passe doit comporter aumoins 12 caracteres',
+                  control: userForm.controls['phone']
+                }"
+                ></ng-container>
+              </div>
+              
+              <div class="col-md ">
+                <div class="form-floating">
+                  <select class="form-select" id="role_name" name="role_name" 
+                  aria-label="Floating label select example"
+                  formControlName="role_name"
+                  [ngClass] = "{
+                    'is-valid': userForm.controls['role_name'].valid,
+                    'is-invalid': userForm.controls['role_name'].invalid
+                  }"
+                  >
+                    <option value="" >Choisissez un role</option>
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                    <option value="ROLE_PARTNER">ROLE_PARTNER</option>
+                    <!-- <option value="ROLE_USER">ROLE_USER</option> -->
+                  </select>
+                  <label for="role_name">Role pour cet utilisateur</label>
+                </div>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{ 
+                  validation: 'required',
+                  message: 'Le role de est obligatoire.' ,
+                  control: userForm.controls['role_name']
+                }"
+                ></ng-container>
+              </div>
+
+
+       
+            </div>
+            <br><br>
+            <div class="row g-2">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="password"
+                  name="password" 
+                  placeholder="********" 
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid': userForm.controls['password'].invalid,
+                    'is-valid': userForm.controls['password'].valid
+                  }"
+                  >
+
+                  <label for="password">Mot de passe </label>
+                </div>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le mot de passe est obligatoire',
+                  control: userForm.controls['password']
+                }"
+                ></ng-container>
+
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minlength',
+                  message: 'Le mot de passe doit comporter aumoin 5 caracteres',
+                  control: userForm.controls['password']
+                }"
+                ></ng-container>
+              </div>
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="confirm_password"
+                  name="confirm_password" 
+                  placeholder="********" 
+                  formControlName="confirm_password"
+                  [ngClass]="{
+                    'is-valid': userForm.controls['confirm_password'].valid,
+                    'is-invalid': userForm.controls['confirm_password'].invalid
+                  }"
+                  >
+                  <label for="confirm_password">Confirmation de mot de passe</label>
+                </div>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minlength',
+                  message: 'La confirmation doit etres conform aux mot de passe',
+                  control: userForm.controls['confirm_password']
+                }"
+                ></ng-container>
+                <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'La confirmation de mot de passe est obligatoire',
+                  control: userForm.controls['confirm_password']
+                }"
+                ></ng-container>
+              </div>
+            </div>
+
+            <br><br>
+            <div class="row g-2">
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-sm btn-primary ml-2" >Ajouter</button>
+        
+                <button type="reset" class="btn btn-sm btn-danger offset-1">Actualiser</button>
+                <br>
+              </div>
+              
+            </div> 
+          </form>
+          
+        </div>
+       
+        <!-- end::Table container -->
+    </div>
+    <!-- begin::Body -->
+</div>
+
+
+<ng-template #add let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" >
+          <span >Confirner le code de validation pour activer votre compte</span>
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <form [formGroup]="confirmForm"
+            novalidate="novalidate"
+            id="kt_login_signin_form"
+
+      >
+          <div class="mt-3">
+              <label for="phone">Numero de téléphone</label>
+              <input id="phone" type="text"
+                     formControlName="phone"
+                     name="phone"
+                     readonly
+                     class="form-control form-control-sm form-control-solid"
+                     [ngClass]="{
+                     'is-invalid': confirmForm.controls['phone'].invalid,
+                      'is-valid': confirmForm.controls['phone'].valid
+                        }"
+              >
+
+          </div>
+
+          <div class="mt-3">
+              <label for="code">Code à 5 chiffres </label>
+              <input id="code" type="text"
+                formControlName="code"
+                name="code"
+                readonly
+                class="form-control form-control-sm form-control-solid"
+                [ngClass]="{
+                'is-invalid': confirmForm.controls['code'].invalid,
+                'is-valid': confirmForm.controls['code'].valid
+                  }"
+            >
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minlength',
+                message: 'Le code de ne doit pas etre inférieur à 5 caractères.',
+                control: confirmForm.controls['code']
+              }"
+              >
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxlength',
+                message: 'Le code de ne doit pas etre plus que 5 caractères.',
+                control: confirmForm.controls['code']
+              }"
+              >
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le code est obligatoire.',
+                control: confirmForm.controls['code']
+              }"
+              >
+            </ng-container>
+              
+
+          </div>
+
+
+          <div class="mt-5">
+              <button type="submit" class="btn btn-sm btn-primary" >Confirmer</button>
+              <button type="button" class="btn btn-sm btn-dark" style="margin-left: 10px"
+                      (click)="modal.close('Save click')">Fermer</button>
+          </div>
+      </form>
+  </div>
+</ng-template>
+
+
+<ng-template
+#formError
+let-control="control"
+let-message="message"
+let-validation="validation"
+>
+<ng-container
+  *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+>
+  <div class="fv-plugins-message-container">
+    <div class="fv-help-block">
+      <span role="alert">{{ message }}</span>
+    </div>
+  </div>
+</ng-container>
+</ng-template>
+

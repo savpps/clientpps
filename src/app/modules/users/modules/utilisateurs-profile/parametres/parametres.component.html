@@ -1,0 +1,231 @@
+
+<div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#kt_account_profile_details"
+      aria-expanded="true"
+      aria-controls="kt_account_profile_details"
+    >
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Informations personnelles</h3>
+      </div>
+    </div>
+    <div id="kt_account_profile_details" class="collapse show">
+      <form novalidate="" 
+            class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+            [formGroup]="profileForm" 
+            (ngSubmit)="submit()"
+
+            >
+        <div class="card-body border-top p-9">
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Genre</label
+                >
+                <div class="col-lg-8 fv-row">
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    name="genre"
+                    id="genre"
+                    formControlName="genre"
+                  >
+                    <option selected ="genre" >{{ genre }}</option>
+                    <option  value="Monsieur">Monsieur</option>
+                    <option value="Madame">Madame</option>
+                    <option value="Mademoiselle">Mademoiselle</option>
+                  </select>
+                </div>
+              </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Nom complet</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <input  
+                    type="text"
+                    class="
+                      form-control form-control-lg form-control-solid
+                      mb-3 mb-lg-0
+                    "
+                    placeholder="Nom "
+                    name="ferstName"
+                    formControlName="firstName"
+
+                  />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <input  
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Prénoms"
+                    name="lastName"
+                    formControlName="lastName"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Profession</label
+            >
+            <div class="col-lg-8 fv-row">
+              <input  
+                type="text"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Profession"
+                name="profession"
+                formControlName="profession"
+
+              />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Date de naisssance</label
+            >
+            <div class="col-lg-8 fv-row">
+              <input  
+                type="date"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Date de naissance"
+                name="birthday"
+                formControlName="birthday"
+
+              />
+            </div>
+          </div>
+
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Adresse</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <input  
+                    type="text"
+                    class="
+                      form-control form-control-lg form-control-solid
+                      mb-3 mb-lg-0
+                    "
+                    placeholder="Pays "
+                    name="country"
+                    formControlName="country"
+
+                  />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <input  
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="ville"
+                    name="town"
+                    formControlName="town"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form 
+            [formGroup]="userForm" 
+            >
+
+          <div class="notice d-flex bg-light-warning col-md-12  rounded border-warning border border-dashed p-6">
+            <!--begin::Icon-->
+            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"></rect>
+                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"></rect>
+              </svg>
+            </span>
+            <!--end::Svg Icon-->
+            <!--end::Icon-->
+            <!--begin::Wrapper-->
+            <div class="row col-md-11">
+              <!--begin::Content-->
+              <div class="fw-bold">
+                <h4 class="text-gray-900 fw-bolder">Mon compte!</h4>
+                <div class="">
+                  <div class="col-md-12 ">
+                    <div class="row" >
+                      <div class="col-4">
+                        <input  
+                          type="text"
+                          class="
+                            form-control form-control-lg form-control-solid
+                            mb-3 mb-lg-0
+                          "
+                          placeholder="Nom d'utilisateur"
+                          name="username"
+                          formControlName="username"
+      
+                        />
+                      </div>
+                      <div class=" col-4">
+                        <input  
+                          type="email"
+                          class="form-control form-control-lg form-control-solid"
+                          placeholder="email"
+                          name="email"
+                          formControlName="email"
+      
+                        />
+                      </div>
+                      <div class=" col-4">
+                        <input  
+                          type="text"
+                          class="
+                            form-control form-control-lg form-control-solid
+                            mb-3 mb-lg-0
+                          "
+                          placeholder="Téléphone"
+                          name="phone"
+                          formControlName="phone"
+      
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--end::Content-->
+            </div>
+            <!--end::Wrapper-->
+          </div>
+          </form>
+          
+        </div>
+
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="isLoading"
+             
+            >
+              <ng-container *ngIf="!isLoading">Appliquez les modiffications</ng-container>
+              <ng-container *ngIf="isLoading">
+                <span clas="indicator-progress" [style.display]="'block'">
+                  Please wait...{{ " " }}
+                  <span
+                    class="spinner-border spinner-border-sm align-middle ms-2"
+                  ></span>
+                </span>
+              </ng-container>
+            </button>
+          </div>
+        
+      </form>
+    </div>
+</div>
+  

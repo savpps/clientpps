@@ -1,0 +1,2 @@
+"# clientpps"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin git@github.com:savpps/clientpps.gitgit push -u origin main
+"# clientpps"  init

@@ -1,0 +1,430 @@
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#kt_account_profile_details"
+    aria-expanded="true"
+    aria-controls="kt_account_profile_details"
+  >
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Détails du profil </h3>
+    </div>
+  </div>
+  <div id="kt_account_profile_details" class="collapse show">
+    <form novalidate="" class="form" [formGroup]="myForm">
+      <div class="card-body border-top p-9">
+        <!-- <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
+          <div class="col-lg-8">
+            <div
+              class="image-input image-input-outline"
+              data-kt-image-input="true"
+              [style.background-image]="'url(./assets/media/avatars/blank.png'"
+            >
+              <div>
+                <img  class="image-input-wrapper w-125px h-125px" [src]="user?.attachment?.avatar" alt="Avatar" />
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
+          <div class="col-lg-8">
+            <!--begin::Image input-->
+            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
+              <!--begin::Preview existing avatar-->
+              <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+              <!--end::Preview existing avatar-->
+              <!--begin::Label-->
+              <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
+                <i class="bi bi-pencil-fill fs-7"></i>
+                <!--begin::Inputs-->
+                <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
+                <input type="hidden" name="avatar_remove">
+                <!--end::Inputs-->
+              </label>
+              <!--end::Label-->
+              <!--begin::Cancel-->
+              <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+                <i class="bi bi-x fs-2"></i>
+              </span>
+              <!--end::Cancel-->
+              <!--begin::Remove-->
+              <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar" data-bs-original-title="Remove avatar" data-kt-initialized="1">
+                <i class="bi bi-x fs-2"></i>
+              </span>
+              <!--end::Remove-->
+            </div>
+            <!--end::Image input-->
+            <!--begin::Hint-->
+            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+            <!--end::Hint-->
+          </div>
+  
+        </div>
+
+        
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Nom complet</label
+          >
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <input
+                  type="text"
+                  class="
+                    form-control form-control-lg form-control-solid
+                    mb-3 mb-lg-0
+                  "
+                  autocomplete="off"
+                  placeholder="Prénoms"
+                  name="firstName"
+                  formControlName="firstName"
+                  [ngClass]="{
+                    'is-invalid': myForm.controls['firstName'].invalid,
+                    'is-valid': myForm.controls['firstName'].valid
+                  }"
+                />
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le Prénoms est requis ',
+                  control: myForm.controls['firstName']
+                  }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'Le Nom est requis ',
+                control: myForm.controls['firstName']
+                }">
+            </ng-container>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <input
+                  type="text"
+                  autocomplete="off"
+                  class="form-control form-control-lg form-control-solid"
+                  placeholder="Nom"
+                  name="lastName"
+                  formControlName="lastName"
+                  [ngClass]="{
+                    'is-invalid': myForm.controls['lastName'].invalid,
+                    'is-valid': myForm.controls['lastName'].valid
+                  }"
+                />
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le Nom est requis ',
+                  control: myForm.controls['lastName']
+                  }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'Le Nom est requis ',
+                control: myForm.controls['lastName']
+                }">
+            </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Genre
+          </label>
+          <div class="col-lg-8 fv-row">
+            <select
+            class="form-select form-select-solid form-select-lg fw-bold"
+            name="genre"
+            autocomplete="off"
+            placeholder="Genre"
+            formControlName="genre"
+            [ngClass]="{
+              'is-valid': myForm.controls['genre'].valid,
+              'is-invalid':myForm.controls['genre'].invalid
+
+            }"
+          >
+          <option value="Autres">Autres</option>
+          <option value="Monsieur">Monsieur</option>
+          <option value="Madame">Madame</option>
+            </select>
+
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le Genre est requis ',
+                  control: myForm.controls['genre']
+                  }">
+              </ng-container>
+              
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Date de naisssance</label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="date"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Company name"
+              name="birthday"
+              formControlName="birthday"
+              [ngClass]="{
+                'is-valid': myForm.controls['birthday'].valid,
+                'is-invalid':myForm.controls['birthday'].invalid
+
+              }"
+            /> 
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'La date de naissance est requis ',
+              control: myForm.controls['birthday']
+              }">
+            </ng-container>
+          
+          </div>
+        </div>
+        <!-- <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6">Contacts</label>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <input
+                  type="text"
+                  class="
+                    form-control form-control-lg form-control-solid
+                    mb-3 mb-lg-0
+                  "
+                  placeholder="mail@exemple.com"
+                  name="email"
+                  formControlName="email"
+                  [ngClass]="{
+                    'is-valid': myForm.controls['email'].valid,
+                    'is-invalid':myForm.controls['email'].invalid
+
+                  }"
+                />
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'L\'adresse mail est requis ',
+                  control: myForm.controls['email']
+                  }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'maxLength',
+                  message: 'L\'adresse mail ne doit pas depassé 100 caractères ',
+                  control: myForm.controls['email']
+                  }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'email',
+                  message: 'Votre adresse mail est incorrect ',
+                  control: myForm.controls['email']
+                  }">
+                </ng-container>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <ngx-intl-tel-input 
+                  style="outline: 0;"
+                    [cssClass]="'bg-transparent border-0 outline-0'"
+                    [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]" [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="false" customPlaceholder="22 23 24 25" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.Togo" [maxLength]="15" [phoneValidation]="true" name="phone"
+                    formControlName="phone"
+                    class="form-control nI "
+                    type="numeric"
+                    [ngClass]="{
+                      'is-invalid': myForm.controls['phone'].invalid,
+                      'is-valid': myForm.controls['phone'].valid
+                    }"
+                  >
+                </ngx-intl-tel-input>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                    validation: 'required',
+                    message: 'Le numéro de téléphone est requis est requis ',
+                    control: myForm.controls['phone']
+                    }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                    validation: 'minLength',
+                    message: 'Le numéro de téléphone ne doit comporté aumoins 8 caractères',
+                    control: myForm.controls['phone']
+                  }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                    validation: 'maxLength',
+                    message: 'Le numéro de téléphone ne doit pas depasser 14 caractères',
+                    control: myForm.controls['phone']
+                  }">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Profession</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Pays"
+              name="profession"
+              formControlName="profession"
+              [ngClass]="{
+                'is-valid': myForm.controls['profession'].valid,
+                'is-invalid':myForm.controls['profession'].invalid
+
+              }"
+            />
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Le champ profession est requis ',
+              control: myForm.controls['country']
+              }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'Votre profession ne doit pas depassé 100 caractères ',
+            control: myForm.controls['country']
+            }">
+        </ng-container>
+            <!-- <div class="fv-plugins-message-container">
+              <div class="fv-help-block">Country is required</div>
+            </div> -->
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Pays</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Pays"
+              name="country"
+              formControlName="country"
+              [ngClass]="{
+                'is-valid': myForm.controls['country'].valid,
+                'is-invalid':myForm.controls['country'].invalid
+
+              }"
+            />
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Le Pays est requis ',
+              control: myForm.controls['country']
+              }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'Le Pays ne doit pas depassé 100 caractères ',
+            control: myForm.controls['country']
+            }">
+        </ng-container>
+            <!-- <div class="fv-plugins-message-container">
+              <div class="fv-help-block">Country is required</div>
+            </div> -->
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Region-Ville</label
+          >
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <input
+                  type="text"
+                  class="
+                    form-control form-control-lg form-control-solid
+                    mb-3 mb-lg-0
+                  "
+                  placeholder="Region"
+                  name="region"
+                  formControlName="region"
+                  [ngClass]="{
+                    'is-valid': myForm.controls['region'].valid,
+                    'is-invalid':myForm.controls['region'].invalid
+
+                  }"
+                />
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'La Region est requis ',
+                  control: myForm.controls['country']
+                  }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'La Region ne doit pas depassé 100 caractères ',
+                control: myForm.controls['region']
+                }">
+            </ng-container>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <input
+                  type="text"
+                  class="form-control form-control-lg form-control-solid"
+                  placeholder="Ville"
+                  name="town"
+                  formControlName="town"
+                  [ngClass]="{
+                    'is-valid': myForm.controls['town'].valid,
+                    'is-invalid':myForm.controls['town'].invalid
+
+                  }"
+                /><ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Le Ville est requis ',
+                  control: myForm.controls['town']
+                  }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'Le Ville ne doit pas dépassé 100 caractères ',
+                control: myForm.controls['town']
+                }">
+            </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="myForm.invalid || user?.acceptAccount"
+          (click)="saveSettings()"
+        >
+          <ng-container *ngIf="!isLoading">Appliquer les modification</ng-container>
+          <ng-container *ngIf="isLoading">
+            <span clas="indicator-progress" [style.display]="'block'">
+              Veillez Patientez...{{ " " }}
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span>
+          </ng-container>
+        </button>
+      </div>
+    </form>
+
+    <ng-template #formError let-control="control" let-message="message" let-validation="validation " >
+      <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)" >
+        <div class="fv-plugins-message-container">
+          <span role="alert" class="text-danger ms-5">
+            {{ message }}
+          </span>
+        </div>
+      </ng-container>
+    </ng-template>
+  </div>
+</div>

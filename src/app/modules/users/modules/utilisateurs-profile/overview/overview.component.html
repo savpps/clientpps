@@ -1,0 +1,75 @@
+<div class="card mb-5 mb-xl-10" id="kt_profile_details_view" >
+  <div class="card-header cursor-pointer">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Détails du profil</h3>
+    </div>
+  </div>
+
+  <div class="card-body p-9">
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Genre</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark" *ngIf="profile">{{ profile.genre }}</span>
+        <span class="fw-bolder fs-6 text-dark" *ngIf="!profile">Non défint</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Nom complet</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark" *ngIf="profile">{{ profile.lastName }} {{ profile.firstName }}</span>
+        <span class="fw-bolder fs-6 text-dark" *ngIf="!profile">Non défint</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Date de naissance</label>
+
+      <div class="col-lg-8 fv-row">
+        <span class="fw-bolder fs-6 text-dark" *ngIf="profile">{{ profile.birthday }}</span>
+        <span class="fw-bolder fs-6 text-dark" *ngIf="!profile">Non défint</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Profession
+      </label>
+
+      <div class="col-lg-8 d-flex align-items-center">
+        <span class="fw-bolder fs-6 text-dark" *ngIf="profile">{{ profile.profession }}</span>
+        <span class="fw-bolder fs-6 text-dark" *ngIf="!profile">Non défint</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Pays</label>
+
+      <div class="col-lg-8">
+        <a  class="fw-bold fs-6 text-dark text-hover-primary cursor-pointer" *ngIf="profile">
+          {{ profile.country }}
+        </a>
+        <a  class="fw-bold fs-6 text-dark text-hover-primary cursor-pointer" *ngIf="!profile">
+          Non définit
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Ville  
+      </label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark" *ngIf="profile">{{ profile.town }}</span>
+        <span class="fw-bolder fs-6 text-dark" *ngIf="!profile">Non définit</span>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

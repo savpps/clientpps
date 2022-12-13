@@ -1,0 +1,75 @@
+<div class="card mb-5 mb-xl-10" id="kt_profile_details_view" *ngIf="profile">
+  <div class="card-header cursor-pointer">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Détail du profil</h3>
+    </div>
+  </div>
+
+  <div class="card-body p-9">
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Genre</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{ profile.genre }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Nom complet</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{ profile.lastName }} {{ profile.firstName }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Date de naissance</label>
+
+      <div class="col-lg-8 fv-row">
+        <span class="fw-bold fs-6">{{ profile.birthday }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Profession
+<!--        <i-->
+<!--                class="fas fa-exclamation-circle ms-1 fs-7"-->
+<!--                data-bs-toggle="tooltip"-->
+<!--                title="Phone number must be active"-->
+<!--        ></i>-->
+      </label>
+
+      <div class="col-lg-8 d-flex align-items-center">
+        <span class="fw-bolder fs-6 me-2">{{ profile.profession }}</span>
+
+<!--        <span class="badge badge-success">Verified</span>-->
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Pays</label>
+
+      <div class="col-lg-8">
+        <a href="#" class="fw-bold fs-6 text-dark text-hover-primary">
+          {{ profile.country }}
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Ville
+       
+      </label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{ profile.town }}</span>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
