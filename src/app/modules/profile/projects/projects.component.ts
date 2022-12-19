@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { IconUserModel } from '../../../_metronic/partials';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { AuthService, UserType } from '../../auth/services/auth-user/auth.service';
@@ -10,6 +10,7 @@ import { ProfileRequest } from '../../users/requests/profile.request';
 import { LayoutScrollTopComponent } from '../../../_metronic/partials/layout/extras/scroll-top/scroll-top.component';
 import { ProfileService } from '../../users/modules/profile.service';
 import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
  
 @Component({
@@ -23,19 +24,24 @@ export class ProjectsComponent implements OnInit {
   hasError: boolean;
   user : UserType;
   myForm : FormGroup;
+  imgForm : FormGroup;
   private unsubscribe: Subscription[] = [];
 
   userRequest = new UserRequest();
   profileRequest = new ProfileRequest();
+  avatar: any = './assets/media/avatars/300-5.jpg';
   id: any;
 
+  
   separateDialCode = true;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
-  constructor(private fb : FormBuilder, private cdr: ChangeDetectorRef, private profileService: ProfileService,private authService : AuthService) {
+  constructor(private modalService: NgbModal,
+              private fb : FormBuilder, private cdr: ChangeDetectorRef,
+              private profileService: ProfileService,private authService : AuthService) {
     const loadingSubscr = this.isLoading$
       .asObservable()
       .subscribe((res) => (this.isLoading = res));
@@ -43,24 +49,39 @@ export class ProjectsComponent implements OnInit {
 
     this.user = authService.currentUserValue;
     this.id = this.user?.profile.id;
-
+    
     // this.myForm.setValue({'genre' : this.user?.profile.genre});
   }
 
   ngOnInit(): void {
     this.initForm();
   }
+  changeImg(event: any){
+    this.avatar = event.target;
+    console.log(this.avatar);
+  }
 
-
+  saveChange(event: any){
+    this.modalService.dismissAll();
+  }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.myForm.controls;
   }
 
+
+
   initForm(){
     this.myForm = this.fb.group(
      {
+      avatar : [
+        this.avatar,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(50),
+        ])
+      ]  ,
       lastName : [
         this.user?.profile.lastName,
         Validators.compose([
@@ -132,10 +153,18 @@ export class ProjectsComponent implements OnInit {
           Validators.maxLength(50),
         ])
       ]
-     }
+     }  
     );
+
+    this.imgForm = this.fb.group(
+      {
+       avatar : []
+      });
   }
 
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+}
 
   saveSettings() {
     this.isLoading$.next(true);

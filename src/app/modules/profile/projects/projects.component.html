@@ -34,15 +34,19 @@
           <div class="col-lg-8">
             <!--begin::Image input-->
             <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
-              <!--begin::Preview existing avatar-->
-              <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+              <!--begin::Preview existing avatar--> 
+
+              <!-- url(./assets/media/avatars/300-1.jpg -->
+
+              <div *ngIf="user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+              <div *ngIf="!user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{avatar}})"></div>
               <!--end::Preview existing avatar-->
               <!--begin::Label-->
               <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
-                <i class="bi bi-pencil-fill fs-7"></i>
+                <i class="bi bi-pencil-fill fs-7" (click)="open(content)"></i>
                 <!--begin::Inputs-->
-                <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
-                <input type="hidden" name="avatar_remove">
+                <!-- <input type="file" name="avatar" accept=".png, .jpg, .jpeg"> -->
+                <!-- <input type="hidden" name="avatar_remove"> -->
                 <!--end::Inputs-->
               </label>
               <!--end::Label-->
@@ -59,16 +63,55 @@
             </div>
             <!--end::Image input-->
             <!--begin::Hint-->
-            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+            <div class="form-text">Types de fichiers autorisés: png, jpg, jpeg.</div>
             <!--end::Hint-->
           </div>
   
+          <ng-template #content let-modal>
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                    <span >Modifier mon avatar</span>
+                </h4>
+                <button type="button" class="close btn btn-sm btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <input id="avatar" type="file"
+                          formControlName="avatar"
+                          name="avatar"
+                          class="form-control form-control-sm form-control-solid"
+                          [ngClass]="{
+                          'is-invalid': myForm.controls['avatar'].invalid,
+                            'is-valid': myForm.controls['avatar'].valid
+                              }"
+                            (change)="changeImg($event)"    
+                    >
+                    <ng-container
+                            [ngTemplateOutlet]="formError"
+                            [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Choissez une image',
+                      control: myForm.controls['avatar']
+                    }"
+                    
+                    >
+                    </ng-container>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="saveChange(this)" >Changer</button>
+              <button type="button" class="btn btn-secondary" data-d  ismiss="modal">Fermer</button>
+            </div>
+          </ng-template>
+
         </div>
 
-        
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label required fw-bold fs-6"
-            >Nom complet</label
+            >Noms complet</label
           >
           <div class="col-lg-8">
             <div class="row">
@@ -428,3 +471,6 @@
     </ng-template>
   </div>
 </div>
+
+
+

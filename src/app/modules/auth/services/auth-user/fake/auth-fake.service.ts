@@ -61,6 +61,26 @@ export class AuthFakeService {
   }
 
 
+  //ATTACHMENTS
+  
+  storeAttachment(request: LoginRequest): Observable<any> {
+    const notFoundError = new Error("Not Found");
+    if (!request.phone || !request.password) {
+      return of(notFoundError);
+    }
+
+    return this.http.post<JwtModel>(`${API_BASE_URL}/login`, request, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    });
+  }
+
+
+
+
   //RESET PASSWORD
 
   verifyTel(data: {}){

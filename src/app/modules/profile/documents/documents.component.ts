@@ -2,6 +2,9 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserType, AuthService } from '../../auth/services/auth-user/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileService } from '../../users/modules/profile.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-documents',
@@ -10,18 +13,31 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class DocumentsComponent {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean;
+  hasError: boolean;
   private unsubscribe: Subscription[] = [];
 
+  avatar: any = './assets/media/avatars/300-5.jpg';
   user : UserType;
   myForm : FormGroup;
 
-  constructor(private fb : FormBuilder, private cdr: ChangeDetectorRef,private authService : AuthService) {
+  constructor(private modalService: NgbModal,
+              private fb : FormBuilder, private cdr: ChangeDetectorRef,
+              private profileService: ProfileService,private authService : AuthService) {
     const loadingSubscr = this.isLoading$
       .asObservable()
       .subscribe((res) => (this.isLoading = res));
     this.unsubscribe.push(loadingSubscr);
 
     this.user = authService.currentUserValue;
+  }
+
+  changeImg(event: any){
+    this.avatar = event.target.value;
+    console.log(this.avatar);
+  }
+
+  saveChange(event: any){
+    this.modalService.dismissAll();
   }
 
   ngOnInit(): void {
@@ -120,6 +136,33 @@ export class DocumentsComponent {
       this.isLoading$.next(false);
       this.cdr.detectChanges();
     }, 1500);
+  }
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+  
+  tinyAlert() {
+    Swal.fire('Hey there!');
+  }
+  successNotification() {
+    Swal.fire('Réussi!', 'Modification appliqué avec succès!', 'success');
+  }
+  alertConfirmation() {
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: 'Ce processus est irréversible.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, vas y.',
+      cancelButtonText: 'Non, laisse-moi réfléchir',
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire('OK!', 'Votre message.', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Annulé', 'Message.)', 'error');
+      }
+    });
   }
 
 }

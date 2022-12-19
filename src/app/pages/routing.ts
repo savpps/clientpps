@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
+import { PaymentsModule } from '../modules/payments/payments.module';
 
 const Routing: Routes = [
+
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'crafted/pages/payments',
+    loadChildren: () =>
+      import('../modules/payments/payments.module').then((m) => m.PaymentsModule),
+    data: { layout: 'light-sidebar' },
   },
   {
     path: 'builder',

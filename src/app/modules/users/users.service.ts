@@ -5,7 +5,7 @@ import {catchError, map} from 'rxjs/operators';
 import {UserResponse} from './responses/user-response';
 import {Observable, of, Subscription} from 'rxjs';
 import {ResponseModel} from "../auth/models/response.model";
-import {UserModel} from "../../models/user.model";
+import {UserModel} from "../../models/user.model"; 
 
 
 @Injectable({

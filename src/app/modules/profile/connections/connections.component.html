@@ -1,178 +1,272 @@
-<div class="d-flex flex-wrap flex-stack mb-6">
-  <h3 class="fw-bolder my-2">
-    My Contacts
-    <span class="fs-6 text-gray-400 fw-bold ms-1">(59)</span>
-  </h3>
+									<!--begin::Payment methods-->
+									<div class="card mb-5 mb-xl-10">
+										<!--begin::Card header-->
+										<div class="card-header card-header-stretch pb-0">
+											<!--begin::Title-->
+											<div class="card-title">
+												<h3 class="m-0">Moyens de payements</h3>
+											</div>
+											<!--end::Title-->
+											<!--begin::Toolbar-->
+											<div class="card-toolbar m-0">
+												<!--begin::Tab nav-->
+												<ul class="nav nav-stretch nav-line-tabs border-transparent" role="tablist">
+													<!--begin::Tab item-->
+													<li class="nav-item" role="presentation">
+														<a id="kt_billing_creditcard_tab" class="nav-link fs-5 fw-bold me-5 active" data-bs-toggle="tab" role="tab" href="#kt_billing_creditcard">Credit / Debit Card</a>
+													</li>
+													<!--end::Tab item-->
+													<!--begin::Tab item-->
+													<li class="nav-item" role="presentation">
+														<a id="kt_billing_paypal_tab" class="nav-link fs-5 fw-bold" data-bs-toggle="tab" role="tab" href="#kt_billing_paypal">Paypal</a>
+													</li>
+													<!--end::Tab item-->
+												</ul>
+												<!--end::Tab nav-->
+											</div>
+											<!--end::Toolbar-->
+										</div>
+										<!--end::Card header-->
+										<!--begin::Tab content-->
+										<div id="kt_billing_payment_tab_content" class="card-body tab-content">
+											<!--begin::Tab panel-->
+											<div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
+												<!--begin::Title-->
+												<h3 class="mb-5">Mes cartes</h3>
+												<!--end::Title-->
+												<!--begin::Row-->
+												<div class="row gx-9 gy-6">
+													<!--begin::Col-->
+													<div class="col-xl-6" data-kt-billing-element="card">
+														<!--begin::Card-->
+														<div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+															<!--begin::Info-->
+															<div class="d-flex flex-column py-2">
+																<!--begin::Owner-->
+																<div class="d-flex align-items-center fs-4 fw-bold mb-5">Marcus Morris
+																<span class="badge badge-light-success fs-7 ms-2">Primary</span></div>
+																<!--end::Owner-->
+																<!--begin::Wrapper-->
+																<div class="d-flex align-items-center">
+																	<!--begin::Icon-->
+																	<img src="assets/media/svg/card-logos/visa.svg" alt="" class="me-4" />
+																	<!--end::Icon-->
+																	<!--begin::Details-->
+																	<div>
+																		<div class="fs-4 fw-bold">Visa **** 1679</div>
+																		<div class="fs-6 fw-semibold text-gray-400">Card expires at 09/24</div>
+																	</div>
+																	<!--end::Details-->
+																</div>
+																<!--end::Wrapper-->
+															</div>
+															<!--end::Info-->
+															<!--begin::Actions-->
+															<div class="d-flex align-items-center py-2">
+																<button class="btn btn-sm btn-light btn-active-light-primary me-3" data-kt-billing-action="card-delete">
+																	<!--begin::Indicator label-->
+																	<span class="indicator-label">Delete</span>
+																	<!--end::Indicator label-->
+																	<!--begin::Indicator progress-->
+																	<span class="indicator-progress">Please wait...
+																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																	<!--end::Indicator progress-->
+																</button>
+																<button class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal" (click)="open(content)" data-bs-target="#kt_modal_new_card">Edit</button>
+															</div>
+															<!--end::Actions-->
+														</div>
+														<!--end::Card-->
+													</div>
+													<!--end::Col-->
+													<!--begin::Col-->
+													<div class="col-xl-6" data-kt-billing-element="card">
+														<!--begin::Card-->
+														<div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+															<!--begin::Info-->
+															<div class="d-flex flex-column py-2">
+																<!--begin::Owner-->
+																<div class="d-flex align-items-center fs-4 fw-bold mb-5">Jacob Holder</div>
+																<!--end::Owner-->
+																<!--begin::Wrapper-->
+																<div class="d-flex align-items-center">
+																	<!--begin::Icon-->
+																	<img src="assets/media/svg/card-logos/american-express.svg" alt="" class="me-4" />
+																	<!--end::Icon-->
+																	<!--begin::Details-->
+																	<div>
+																		<div class="fs-4 fw-bold">Mastercard **** 2040</div>
+																		<div class="fs-6 fw-semibold text-gray-400">Card expires at 10/22</div>
+																	</div>
+																	<!--end::Details-->
+																</div>
+																<!--end::Wrapper-->
+															</div>
+															<!--end::Info-->
+															<!--begin::Actions-->
+															<div class="d-flex align-items-center py-2">
+																<button class="btn btn-sm btn-light btn-active-light-primary me-3" data-kt-billing-action="card-delete">
+																	<!--begin::Indicator label-->
+																	<span class="indicator-label">Delete</span>
+																	<!--end::Indicator label-->
+																	<!--begin::Indicator progress-->
+																	<span class="indicator-progress">Please wait...
+																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																	<!--end::Indicator progress-->
+																</button>
+																<button class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal" (click)="open(content)" data-bs-target="#kt_modal_new_card">Edit</button>
+															</div>
+															<!--end::Actions-->
+														</div>
+														<!--end::Card-->
+													</div>
+													<!--end::Col-->
+													<!--begin::Col-->
+													<div class="col-xl-6" data-kt-billing-element="card">
+														<!--begin::Card-->
+														<div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+															<!--begin::Info-->
+															<div class="d-flex flex-column py-2">
+																<!--begin::Owner-->
+																<div class="d-flex align-items-center fs-4 fw-bold mb-5">Jhon Larson</div>
+																<!--end::Owner-->
+																<!--begin::Wrapper-->
+																<div class="d-flex align-items-center">
+																	<!--begin::Icon-->
+																	<img src="assets/media/svg/card-logos/mastercard.svg" alt="" class="me-4" />
+																	<!--end::Icon-->
+																	<!--begin::Details-->
+																	<div>
+																		<div class="fs-4 fw-bold">Mastercard **** 1290</div>
+																		<div class="fs-6 fw-semibold text-gray-400">Card expires at 03/23</div>
+																	</div>
+																	<!--end::Details-->
+																</div>
+																<!--end::Wrapper-->
+															</div>
+															<!--end::Info-->
+															<!--begin::Actions-->
+															<div class="d-flex align-items-center py-2">
+																<button class="btn btn-sm btn-light btn-active-light-primary me-3" data-kt-billing-action="card-delete">
+																	<!--begin::Indicator label-->
+																	<span class="indicator-label">Delete</span>
+																	<!--end::Indicator label-->
+																	<!--begin::Indicator progress-->
+																	<span class="indicator-progress">Please wait...
+																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																	<!--end::Indicator progress-->
+																</button>
+																<button class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card" (click)="open(content)">Edit</button>
+															</div>
+															<!--end::Actions-->
+														</div>
+														<!--end::Card-->
+													</div>
+													<!--end::Col-->
+													<!--begin::Col-->
+													<div class="col-xl-6">
+														<!--begin::Notice-->
+														<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed h-lg-100 p-6">
+															<!--begin::Wrapper-->
+															<div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
+																<!--begin::Content-->
+																<div class="mb-3 mb-md-0 fw-semibold">
+																	<h4 class="text-gray-900 fw-bold">Important Note!</h4>
+																	<div class="fs-6 text-gray-700 pe-7">Please carefully read
+																	<a href="#" class="fw-bold me-1">Product Terms</a>adding
+																	<br />your new payment card</div>
+																</div>
+																<!--end::Content-->
+																<!--begin::Action-->
+																<a href="#" class="btn btn-primary px-6 align-self-center text-nowrap" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">Add Card</a>
+																<!--end::Action-->
+															</div>
+															<!--end::Wrapper-->
+														</div>
+														<!--end::Notice-->
+													</div>
+													<!--end::Col-->
+												</div>
+												<!--end::Row-->
+											</div>
+											<!--end::Tab panel-->
+											<!--begin::Tab panel-->
+											<div id="kt_billing_paypal" class="tab-pane fade" role="tabpanel" aria-labelledby="kt_billing_paypal_tab">
+												<!--begin::Title-->
+												<h3 class="mb-5">My Paypal</h3>
+												<!--end::Title-->
+												<!--begin::Description-->
+												<div class="text-gray-600 fs-6 fw-semibold mb-5">To use PayPal as your payment method, you will need to make pre-payments each month before your bill is due.</div>
+												<!--end::Description-->
+												<!--begin::Form-->
+												<form class="form">
+													<!--begin::Input group-->
+													<div class="mb-7 mw-350px">
+														<select name="timezone" data-control="select2" data-placeholder="Select an option" data-hide-search="true" class="form-select form-select-solid form-select-lg fw-semibold fs-6 text-gray-700">
+															<option>Select an option</option>
+															<option value="25">US $25.00</option>
+															<option value="50">US $50.00</option>
+															<option value="100">US $100.00</option>
+															<option value="125">US $125.00</option>
+															<option value="150">US $150.00</option>
+														</select>
+													</div>
+													<!--end::Input group-->
+													<button type="submit" class="btn btn-primary">Pay with Paypal</button>
+												</form>
+												<!--end::Form-->
+											</div>
+											<!--end::Tab panel-->
+										</div>
+										<!--end::Tab content-->
+									</div>
+									<!--end::Payment methods-->
 
-  <div class="d-flex my-2">
-    <select
-      name="status"
-      data-control="select2"
-      data-hide-search="true"
-      class="form-select form-select-white form-select-sm w-125px"
-    >
-      <option value="Online" selected>Online</option>
-      <option value="Pending">Pending</option>
-      <option value="Declined">Declined</option>
-      <option value="Accepted">Accepted</option>
-    </select>
-  </div>
-</div>
+                                    <ng-template #content let-modal>
 
-<div class="row g-6 g-xl-9">
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-6.jpg"
-      name="Emma Smith"
-      job="Art Director"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      color="danger"
-      name="Melody Macy"
-      job="Marketing Analytic"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-      [online]="true"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-1.jpg"
-      name="Max Smith"
-      job="Software Enginer"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-5.jpg"
-      name="Sean Bean"
-      job="Web Developer"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-25.jpg"
-      name="Brian Cox"
-      job="UI/UX Designer"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      color="warning"
-      name="Mikaela Collins"
-      job="Head Of Marketing"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-      [online]="true"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-9.jpg"
-      name="Francis Mitcham"
-      job="Software Arcitect"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      color="danger"
-      name="Olivia Wild"
-      job="System Admin"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-      [online]="true"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      color="primary"
-      name="Neil Owen"
-      job="Account Manager"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-      [online]="true"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-23.jpg"
-      name="Dan Wilson"
-      job="Web Desinger"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      color="danger"
-      name="Emma Bold"
-      job="Corporate Finance"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-      [online]="true"
-    ></app-card3>
-  </div>
-  <div class="col-md-6 col-xxl-4">
-    <app-card3
-      avatar="./assets/media/avatars/300-12.jpg"
-      name="Ana Crown"
-      job="Customer Relationship"
-      avgEarnings="$14,560"
-      totalEarnings="$236,400"
-    ></app-card3>
-  </div>
-</div>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modal-basic-title">
+                                                <span >Modifier mon avatar</span>
+                                            </h4>
+                                            <button type="button" class="close btn btn-sm btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="">
+                                                <input id="avatar" type="file"
+                                                      formControlName="avatar"
+                                                      name="avatar"
+                                                      class="form-control form-control-sm form-control-solid"
+                                                      [ngClass]="{
+                                                      'is-invalid': myForm.controls['avatar'].invalid,
+                                                        'is-valid': myForm.controls['avatar'].valid
+                                                          }"
+                                                >
+                                                <ng-container
+                                                        [ngTemplateOutlet]="formError"
+                                                        [ngTemplateOutletContext]="{
+                                                  validation: 'required',
+                                                  message: 'Choissez une image',
+                                                  control: myForm.controls['avatar']
+                                                }"
+                                                
+                                                >
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-primary" (click)="saveChange(this)" >Changer</button>
+                                          <button type="button" class="btn btn-secondary" data-d  ismiss="modal">Fermer</button>
+                                        </div>
+                                    </ng-template>
 
-<div class="d-flex flex-stack flex-wrap pt-10">
-  <div class="fs-6 fw-bold text-gray-700">Showing 1 to 10 of 50 entries</div>
-
-  <ul class="pagination">
-    <li class="page-item previous">
-      <a class="page-link cursor-pointer">
-        <i class="previous"></i>
-      </a>
-    </li>
-
-    <li class="page-item active">
-      <a class="page-link cursor-pointer"> 1 </a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link cursor-pointer"> 2 </a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link cursor-pointer"> 3 </a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link cursor-pointer"> 4 </a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link cursor-pointer"> 5 </a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link cursor-pointer"> 6 </a>
-    </li>
-
-    <li class="page-item next">
-      <a class="page-link cursor-pointer">
-        <i class="next"></i>
-      </a>
-    </li>
-  </ul>
-</div>
+                                    <ng-template #formError let-control="control" let-message="message" let-validation="validation " >
+                                      <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)" >
+                                        <div class="fv-plugins-message-container">
+                                          <span role="alert" class="text-danger ms-5">
+                                            {{ message }}
+                                          </span>
+                                        </div>
+                                      </ng-container>
+                                    </ng-template>

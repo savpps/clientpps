@@ -16,6 +16,7 @@ import {
   DropdownMenusModule,
   WidgetsModule,
 } from '../../_metronic/partials';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {
     CampaignsComponent,
     DocumentsComponent,
     ConnectionsComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,

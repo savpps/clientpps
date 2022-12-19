@@ -1,16 +1,17 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService, UserType } from '../../auth/services/auth-user/auth.service';
-import { ProfileService } from '../profile.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ProfileService } from '../profile/profile.service';
+import { AuthService, UserType } from '../auth/services/auth-user/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription, BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-connections',
-  templateUrl: './connections.component.html',
+  selector: 'app-payments',
+  templateUrl: './payments.component.html',
+  styleUrls: ['./payments.component.scss']
 })
-export class ConnectionsComponent {
+export class PaymentsComponent implements OnInit {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean;
   hasError: boolean;
@@ -21,10 +22,7 @@ export class ConnectionsComponent {
 
   constructor(private modalService: NgbModal,
     private fb : FormBuilder, private cdr: ChangeDetectorRef,
-    private profileService: ProfileService,private authService : AuthService) {
-      this.user = authService.currentUserValue;
-      console.log(this.user);
-    }
+    private profileService: ProfileService,private authService : AuthService) {}
 
     ngOnInit(): void {
       this.initForm();
@@ -39,6 +37,7 @@ export class ConnectionsComponent {
         Validators.compose([
           Validators.required,
           Validators.maxLength(50)
+
         ])     
       ]
      });

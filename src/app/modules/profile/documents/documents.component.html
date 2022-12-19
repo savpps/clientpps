@@ -68,68 +68,23 @@
           <div class="card-footer d-flex justify-content-end py-6 px-9">
             <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
               
-              
-              
-
-<!--begin::Image input-->
- <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
-  <!--begin::Image preview wrapper-->
-  <div class="image-input-wrapper w-125px h-125px" style="background-image: url(/assets/media/avatars/300-1.jpg)"></div>
-  <!--end::Image preview wrapper-->
-
-  <!--begin::Edit button-->
-  <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-     data-kt-image-input-action="change"
-     data-bs-toggle="tooltip"
-     data-bs-dismiss="click"
-     title="Change avatar">
-      <i class="bi bi-pencil-fill fs-7"></i>
-
-      <!--begin::Inputs-->
-      <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-      <input type="hidden" name="avatar_remove" />
-      <!--end::Inputs-->
-  </label>
-  <!--end::Edit button-->
-
-  <!--begin::Cancel button-->
-  <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-     data-kt-image-input-action="cancel"
-     data-bs-toggle="tooltip"
-     data-bs-dismiss="click"
-     title="Cancel avatar">
-      <i class="bi bi-x fs-2"></i>
-  </span>
-  <!--end::Cancel button-->
-
-  <!--begin::Remove button-->
-  <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-     data-kt-image-input-action="remove"
-     data-bs-toggle="tooltip"
-     data-bs-dismiss="click"
-     title="Remove avatar">
-      <i class="bi bi-x fs-2"></i>
-  </span>
-  <!--end::Remove button-->
-</div>
-<!--end::Image input-->
-
-
-
-
               <div class="col-12 col-sm-12 col-xl">
                 <div class="col-lg-8">
                   <!--begin::Image input-->
                   <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
-                    <!--begin::Preview existing avatar-->
-                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.cniVerso}})"></div>
+                    <!--begin::Preview existing avatar--> 
+      
+                    <!-- url(./assets/media/avatars/300-1.jpg -->
+      
+                    <div *ngIf="user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+                    <div *ngIf="!user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{avatar}})"></div>
                     <!--end::Preview existing avatar-->
                     <!--begin::Label-->
                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
-                      <i class="bi bi-pencil-fill fs-7"></i>
+                      <i class="bi bi-pencil-fill fs-7" (click)="open(content)"></i>
                       <!--begin::Inputs-->
-                      <input type="file" name="verso" accept=".png, .jpg, .jpeg">
-                      <input type="hidden" name="avatar_remove">
+                      <!-- <input type="file" name="avatar" accept=".png, .jpg, .jpeg"> -->
+                      <!-- <input type="hidden" name="avatar_remove"> -->
                       <!--end::Inputs-->
                     </label>
                     <!--end::Label-->
@@ -146,7 +101,7 @@
                   </div>
                   <!--end::Image input-->
                   <!--begin::Hint-->
-                  <div class="form-text">Charger le verso de votre pièce (png, jpeg)</div>
+                  <div class="form-text">Types de fichiers autorisés: png, jpg, jpeg.</div>
                   <!--end::Hint-->
                 </div>
               </div>
@@ -155,15 +110,19 @@
                 <div class="col-lg-8">
                   <!--begin::Image input-->
                   <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
-                    <!--begin::Preview existing avatar-->
-                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.signature}})"></div>
+                    <!--begin::Preview existing avatar--> 
+      
+                    <!-- url(./assets/media/avatars/300-1.jpg -->
+      
+                    <div *ngIf="user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+                    <div *ngIf="!user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{avatar}})"></div>
                     <!--end::Preview existing avatar-->
                     <!--begin::Label-->
                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
-                      <i class="bi bi-pencil-fill fs-7"></i>
+                      <i class="bi bi-pencil-fill fs-7" (click)="open(content)"></i>
                       <!--begin::Inputs-->
-                      <input type="file" name="signature" accept=".png, .jpg, .jpeg">
-                      <input type="hidden" name="avatar_remove">
+                      <!-- <input type="file" name="avatar" accept=".png, .jpg, .jpeg"> -->
+                      <!-- <input type="hidden" name="avatar_remove"> -->
                       <!--end::Inputs-->
                     </label>
                     <!--end::Label-->
@@ -180,23 +139,28 @@
                   </div>
                   <!--end::Image input-->
                   <!--begin::Hint-->
-                  <div class="form-text">Charger votre signature (png, jpeg)</div>
+                  <div class="form-text">Types de fichiers autorisés: png, jpg, jpeg.</div>
                   <!--end::Hint-->
                 </div>
               </div>
+
               <div class="col-12 col-sm-12 col-xl">
                 <div class="col-lg-8">
                   <!--begin::Image input-->
                   <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
-                    <!--begin::Preview existing avatar-->
-                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+                    <!--begin::Preview existing avatar--> 
+      
+                    <!-- url(./assets/media/avatars/300-1.jpg -->
+      
+                    <div *ngIf="user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+                    <div *ngIf="!user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{avatar}})"></div>
                     <!--end::Preview existing avatar-->
                     <!--begin::Label-->
                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
-                      <i class="bi bi-pencil-fill fs-7"></i>
+                      <i class="bi bi-pencil-fill fs-7" (click)="open(content)"></i>
                       <!--begin::Inputs-->
-                      <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
-                      <input type="hidden" name="avatar_remove">
+                      <!-- <input type="file" name="avatar" accept=".png, .jpg, .jpeg"> -->
+                      <!-- <input type="hidden" name="avatar_remove"> -->
                       <!--end::Inputs-->
                     </label>
                     <!--end::Label-->
@@ -213,7 +177,45 @@
                   </div>
                   <!--end::Image input-->
                   <!--begin::Hint-->
-                  <div class="form-text">Charger votre photo de profil (png, jpeg)</div>
+                  <div class="form-text">Types de fichiers autorisés: png, jpg, jpeg.</div>
+                  <!--end::Hint-->
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-12 col-xl">
+                <div class="col-lg-8">
+                  <!--begin::Image input-->
+                  <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')">
+                    <!--begin::Preview existing avatar--> 
+      
+                    <!-- url(./assets/media/avatars/300-1.jpg -->
+      
+                    <div *ngIf="user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{user?.attachment?.avatar}})"></div>
+                    <div *ngIf="!user?.attachment?.avatar" class="image-input-wrapper w-125px h-125px" style="background-image: url({{avatar}})"></div>
+                    <!--end::Preview existing avatar-->
+                    <!--begin::Label-->
+                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
+                      <i class="bi bi-pencil-fill fs-7" (click)="open(content)"></i>
+                      <!--begin::Inputs-->
+                      <!-- <input type="file" name="avatar" accept=".png, .jpg, .jpeg"> -->
+                      <!-- <input type="hidden" name="avatar_remove"> -->
+                      <!--end::Inputs-->
+                    </label>
+                    <!--end::Label-->
+                    <!--begin::Cancel-->
+                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+                      <i class="bi bi-x fs-2"></i>
+                    </span>
+                    <!--end::Cancel-->
+                    <!--begin::Remove-->
+                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar" data-bs-original-title="Remove avatar" data-kt-initialized="1">
+                      <i class="bi bi-x fs-2"></i>
+                    </span>
+                    <!--end::Remove-->
+                  </div>
+                  <!--end::Image input-->
+                  <!--begin::Hint-->
+                  <div class="form-text">Types de fichiers autorisés: png, jpg, jpeg.</div>
                   <!--end::Hint-->
                 </div>
               </div>
@@ -244,6 +246,57 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+          <span >Modifier mon avatar</span>
+      </h4>
+      <button type="button" class="close btn btn-sm btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <div class="">
+          <input id="avatar" type="file"
+                formControlName="avatar"
+                name="avatar"
+                class="form-control form-control-sm form-control-solid"
+                [ngClass]="{
+                'is-invalid': myForm.controls['avatar'].invalid,
+                  'is-valid': myForm.controls['avatar'].valid
+                    }"
+                  (change)="changeImg($event)"    
+          >
+          <ng-container
+                  [ngTemplateOutlet]="formError"
+                  [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Choissez une image',
+            control: myForm.controls['avatar']
+          }"
+          
+          >
+          </ng-container>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveChange(this)" >Changer</button>
+    <button type="button" class="btn btn-secondary" data-d  ismiss="modal">Fermer</button>
+  </div>
+</ng-template>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation " >
+  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)" >
+    <div class="fv-plugins-message-container">
+      <span role="alert" class="text-danger ms-5">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+
 <!-- 
 <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
   <div class="col-12 col-sm-12 col-xl">
