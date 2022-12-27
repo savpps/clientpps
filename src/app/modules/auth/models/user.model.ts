@@ -4,21 +4,23 @@ import { SocialNetworksModel } from './social-networks.model';
 
 export class UserModel extends AuthModel {
   id: number;
-  username: string;
+  // username: string;
   password: string;
-  fullname: string;
+  confirm_password: string;
+  godFatherReferralCode: string;
+  // fullname: string;
   email: string;
   pic: string;
   roles: number[] = [];
-  occupation: string;
-  companyName: string;
+  // occupation: string;
+  // companyName: string;
   phone: string;
-  address?: AddressModel;
-  socialNetworks?: SocialNetworksModel;
+  // address?: AddressModel;
+  // socialNetworks?: SocialNetworksModel;
   // personal information
   firstname: string;
   lastname: string;
-  website: string;
+  // website: string;
   // account information
   language: string;
   timeZone: string;
@@ -51,16 +53,20 @@ export class UserModel extends AuthModel {
   setUser(_user: unknown) {
     const user = _user as UserModel;
     this.id = user.id;
-    this.username = user.username || '';
+    // this.username = user.username || '';
     this.password = user.password || '';
-    this.fullname = user.fullname || '';
+    // this.fullname = user.fullname || '';
     this.email = user.email || '';
     this.pic = user.pic || './assets/media/avatars/blank.png';
     this.roles = user.roles || [];
-    this.occupation = user.occupation || '';
-    this.companyName = user.companyName || '';
+    // this.occupation = user.occupation || '';
+    // this.companyName = user.companyName || '';
     this.phone = user.phone || '';
-    this.address = user.address;
-    this.socialNetworks = user.socialNetworks;
+
+    this.confirm_password = user.confirm_password || ''
+    this.godFatherReferralCode = user.godFatherReferralCode || ''
+
+    // this.address = user.address;
+    // this.socialNetworks = user.socialNetworks;
   }
 }

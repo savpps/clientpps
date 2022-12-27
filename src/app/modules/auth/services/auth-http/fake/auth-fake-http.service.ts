@@ -55,7 +55,7 @@ export class AuthHTTPService {
     user.expiresIn = new Date(Date.now() + 100 * 24 * 60 * 60 * 1000);
     user.pic = './assets/media/avatars/300-1.jpg';
 
-    return this.http.post<UserModel>(API_USERS_URL, user);
+    return this.http.post<UserModel>(`${environment.apiUrl}/register`, user);
   }
 
   forgotPassword(email: string): Observable<boolean> {

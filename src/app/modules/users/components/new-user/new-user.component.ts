@@ -129,7 +129,6 @@ export class NewUserComponent implements OnInit {
     }
     else{
       this.user = this.userForm.value;
-      
       console.log("creating",this.user);
       this.userService.createUser(this.user).subscribe(
         res =>{

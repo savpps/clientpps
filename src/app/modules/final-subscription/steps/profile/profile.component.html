@@ -1,0 +1,249 @@
+<div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper">
+  <div class="stepper-nav mb-5">
+    <div class="stepper-item" [ngClass]="{
+      current: isProfile === true,
+      completed: isProfile === false
+    }">
+      <h3 class="stepper-title">Création du profile</h3>
+    </div>
+
+    <div class="stepper-item" [ngClass]="{
+    current: isAttachment === true,
+    completed: isAttachment === false
+
+  }">
+      <h3 class="stepper-title">Information des pièces justicatifs</h3>
+    </div>
+    <div class="stepper-item" [ngClass]="{
+    current: isSegment === true
+  }">
+      <h3 class="stepper-title">Choix de segment</h3>
+    </div>
+
+    <div class="stepper-item">
+      <h3 class="stepper-title">Fin</h3>
+    </div>
+  </div>
+  <form novalidate="" class="form" [formGroup]="profileForm">
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+      <div class="col-lg-8 fv-row">
+          <input type="hidden" class="form-control form-control-lg form-control-solid" placeholder=""
+            name="phone" formControlName="phone" [ngClass]="{
+              'is-valid': profileForm.controls['phone'].valid,
+              'is-invalid':profileForm.controls['phone'].invalid
+
+            }" />
+        </div>
+      </div>
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Nom complet</label>
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-6 fv-row">
+              <input type="text" class="
+                  form-control form-control-lg form-control-solid
+                  mb-3 mb-lg-0
+                " autocomplete="off" placeholder="Prénoms" name="firstName" formControlName="firstName" [ngClass]="{
+                  'is-invalid': profileForm.controls['firstName'].invalid,
+                  'is-valid': profileForm.controls['firstName'].valid
+                }" />
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le Prénoms est requis ',
+                control: profileForm.controls['firstName']
+                }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'maxLength',
+              message: 'Le Nom est requis ',
+              control: profileForm.controls['firstName']
+              }">
+              </ng-container>
+            </div>
+            <div class="col-lg-6 fv-row">
+              <input type="text" autocomplete="off" class="form-control form-control-lg form-control-solid"
+                placeholder="Nom" name="lastName" formControlName="lastName" [ngClass]="{
+                  'is-invalid': profileForm.controls['lastName'].invalid,
+                  'is-valid': profileForm.controls['lastName'].valid
+                }" />
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le Nom est requis ',
+                control: profileForm.controls['lastName']
+                }">
+              </ng-container>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'maxLength',
+              message: 'Le Nom est requis ',
+              control: profileForm.controls['lastName']
+              }">
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Genre
+        </label>
+        <div class="col-lg-8 fv-row">
+          <select class="form-select form-select-solid form-select-lg fw-bold" name="genre" autocomplete="off"
+            placeholder="Genre" formControlName="genre" [ngClass]="{
+            'is-valid': profileForm.controls['genre'].valid,
+            'is-invalid':profileForm.controls['genre'].invalid
+
+          }">
+            <option value="Autres">Autres</option>
+            <option value="Monsieur">Monsieur</option>
+            <option value="Madame">Madame</option>
+          </select>
+
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le Genre est requis ',
+                control: profileForm.controls['genre']
+                }">
+          </ng-container>
+
+        </div>
+      </div>
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Date de naisssance</label>
+        <div class="col-lg-8 fv-row">
+          <input type="date" class="form-control form-control-lg form-control-solid" placeholder="Company name"
+            name="birthday" formControlName="birthday" [ngClass]="{
+              'is-valid': profileForm.controls['birthday'].valid,
+              'is-invalid':profileForm.controls['birthday'].invalid
+
+            }" />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'La date de naissance est requis ',
+            control: profileForm.controls['birthday']
+            }">
+          </ng-container>
+
+        </div>
+      </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Profession</span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Profession"
+              name="profession" formControlName="profession" [ngClass]="{
+              'is-valid': profileForm.controls['profession'].valid,
+              'is-invalid':profileForm.controls['profession'].invalid
+
+            }" />
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Le champ profession est requis ',
+            control: profileForm.controls['country']
+            }">
+            </ng-container>
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'maxLength',
+          message: 'Votre profession ne doit pas depassé 100 caractères ',
+          control: profileForm.controls['country']
+          }">
+            </ng-container>
+
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Pays</span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Pays" name="country"
+              formControlName="country" [ngClass]="{
+              'is-valid': profileForm.controls['country'].valid,
+              'is-invalid':profileForm.controls['country'].invalid
+
+            }" />
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Le Pays est requis ',
+            control: profileForm.controls['country']
+            }">
+            </ng-container>
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'maxLength',
+          message: 'Le Pays ne doit pas depassé 100 caractères ',
+          control: profileForm.controls['country']
+          }">
+            </ng-container>
+            <!-- <div class="fv-plugins-message-container">
+            <div class="fv-help-block">Country is required</div>
+          </div> -->
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6">Region-Ville</label>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <input type="text" class="
+                  form-control form-control-lg form-control-solid
+                  mb-3 mb-lg-0
+                " placeholder="Region" name="region" formControlName="region" [ngClass]="{
+                  'is-valid': profileForm.controls['region'].valid,
+                  'is-invalid':profileForm.controls['region'].invalid
+
+                }" />
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'La Region est requis ',
+                control: profileForm.controls['country']
+                }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'maxLength',
+              message: 'La Region ne doit pas depassé 100 caractères ',
+              control: profileForm.controls['region']
+              }">
+                </ng-container>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Ville"
+                  name="town" formControlName="town" [ngClass]="{
+                  'is-valid': profileForm.controls['town'].valid,
+                  'is-invalid':profileForm.controls['town'].invalid
+
+                }" /><ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Le Ville est requis ',
+                control: profileForm.controls['town']
+                }">
+                </ng-container>
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'maxLength',
+              message: 'Le Ville ne doit pas dépassé 100 caractères ',
+              control: profileForm.controls['town']
+              }">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button type="button" class="btn btn-primary" [disabled]="profileForm.invalid"
+          (click)="storeProfile()">
+          <ng-container *ngIf="!isLoading">Appliquer les modification</ng-container>
+          <ng-container *ngIf="isLoading">
+            <span clas="indicator-progress" [style.display]="'block'">
+              Veillez Patientez...{{ " " }}
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </ng-container>
+        </button>
+      </div>
+  </form>
+  <ng-template #formError let-control="control" let-message="message" let-validation="validation ">
+    <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+      <div class="fv-plugins-message-container">
+        <span role="alert" class="text-danger ms-5">
+          {{ message }}
+        </span>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>

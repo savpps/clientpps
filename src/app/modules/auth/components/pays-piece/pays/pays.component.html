@@ -1,0 +1,102 @@
+<div class="d-flex align-items-center position-relative my-3">
+    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+    <span class="svg-icon svg-icon-1 position-absolute ms-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
+                transform="rotate(45 17.0365 15.1223)" fill="black"></rect>
+            <path
+                d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                fill="black"></path>
+        </svg>
+    </span>
+    <!--end::Svg Icon-->
+    <input type="text" [(ngModel)]="term" data-kt-user-table-filter="search"
+        class="form-control form-control-solid w-250px ps-14 border border-dark" placeholder="Search user">
+</div>
+<div class="card mb-5 mb-xl-8">
+    <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+            <!-- begin::Table -->
+            <table class="table align-middle gs-0 gy-4">
+                <!-- begin::Table head -->
+                <thead>
+                    <tr class="fw-bolder text-muted bg-light">
+                        <th class="ps-4 min-w-100px center rounded-start "> Index</th>
+                        <th class="min-w-125px center"> Nom du pays</th>
+                        <th class="min-w-125px center"> Drapeau du pays</th>
+                        <th class="min-w-125px center"> Indicatifs</th>
+                        <th class="min-w-125px center"> Disponibilité</th>
+                        <th class="min-w-150px text-end rounded-end pe-6">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pays of pays | filter:term; let index = index; ">
+                        <td>
+                            <div class=" ps-8 d-flex align-items-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="">
+                                        {{index + 1}}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="">
+                                        {{ pays.name }}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="">
+                                        {{ pays.flag }}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="">
+                                        {{ pays.dialCode }}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span *ngIf="pays.isAvailable === true">
+                                Est disponible
+                            </span>
+
+                            <span *ngIf="pays.isAvailable === false">
+                                Pas disponible
+                            </span>
+                        </td>
+                        <td>
+                            <div>
+                                <div class="d-flex justify-content-end">
+                                    <div class="form-check form-check-solid form-check-custom form-switch">
+                                        <input (click)="updatePays(pays.id)" [(ngModel)]="pays.isAvailable" class="form-check-input w-45px h-30px" type="checkbox"  [checked]="pays.isAvailable" />
+                                    </div>
+                                </div>
+                            </div>
+                        <label class="form-check-label" for=""></label>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+                <!-- end::Table body -->
+            </table>
+            <!-- end::Table -->
+        </div>
+        <!-- end::Table container -->
+    </div>
+    <!-- begin::Body -->
+</div>
+

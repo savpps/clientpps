@@ -1,8 +1,9 @@
 export class AttachmentModel {
     id: string;
-    cniRecto: string;
-    cniVerso: string;
-    avatar: string;
-    signature: string;
-    cniNumber: string;
+    pieceRecto: string;
+    pieceVerso: File;
+    avatar: File;
+    signature: File;
+    pieceNumber: File;
+    typePieceNumber:string;
 }

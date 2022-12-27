@@ -6,6 +6,7 @@ import { AuthModel } from '../models/auth.model';
 import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { AuthFakeService } from './auth-user/fake/auth-fake.service';
 
 export type UserType = UserModel | undefined;
 
@@ -33,7 +34,8 @@ export class AuthService implements OnDestroy {
 
   constructor(
     private authHttpService: AuthHTTPService,
-    private router: Router
+    private router: Router,
+    private authFakeService: AuthFakeService,
   ) {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.currentUserSubject = new BehaviorSubject<UserType>(undefined);
@@ -88,6 +90,11 @@ export class AuthService implements OnDestroy {
   }
 
   // need create new user then login
+ /**
+  * If the user is successfully created, then log them in, otherwise return undefined.
+  * @param {UserModel} user - UserModel - the user model that contains the user's email and password
+  * @returns Observable&lt;any&gt;
+  */
   registration(user: UserModel): Observable<any> {
     this.isLoadingSubject.next(true);
     return this.authHttpService.createUser(user).pipe(

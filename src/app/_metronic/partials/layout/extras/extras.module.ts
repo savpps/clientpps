@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {InlineSVGModule} from 'ng-inline-svg-2';
 import {NotificationsInnerComponent} from './dropdown-inner/notifications-inner/notifications-inner.component';

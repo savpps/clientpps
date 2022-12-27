@@ -17,7 +17,6 @@ export class Step1Component implements OnInit, OnDestroy {
   private unsubscribe: Subscription[] = [];
 
   constructor(private fb: FormBuilder) {}
-
   ngOnInit() {
     this.initForm();
     this.updateParentModel({}, true);

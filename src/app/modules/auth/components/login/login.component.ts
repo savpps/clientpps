@@ -119,10 +119,22 @@ export class LoginComponent implements OnInit, OnDestroy {
       .loginByEmail(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe((user) => {
-        if (user) { 
+        if (user && user?.profile==null){ 
           console.log(user);
+          this.router.navigate(['/inscription/profile']);
+        }
+        else if(user && user?.attachment == null){
+          this.router.navigate(['/inscription/attachment']);
+        }
+        
+        else if(user && user?.segment == null){
+          this.router.navigate(['/inscription/segment']);
+        }
+        
+        else if(user && (user?.profile && user.attachment && user?.segment) != null){
           this.router.navigate([this.returnUrl]);
-        } else {
+        }
+         else {
           this.hasError = true;
         }
       });
@@ -136,9 +148,22 @@ export class LoginComponent implements OnInit, OnDestroy {
       .loginByPhone(this.f.phone.value.e164Number, this.f.password.value)
       .pipe(first())
       .subscribe((user) => {
-        if (user) {
+        if (user && user?.profile==null){ 
+          console.log(user);
+          this.router.navigate(['/inscription/profile']);
+        }
+        else if(user && user?.attachment == null){
+          this.router.navigate(['/inscription/attachment']);
+        }
+        
+        else if(user && user?.segment == null){
+          this.router.navigate(['/inscription/segment']);
+        }
+        
+        else if(user && (user?.profile && user.attachment && user?.segment) != null){
           this.router.navigate([this.returnUrl]);
-        } else {
+        }
+         else {
           this.hasError = true;
         }
       });

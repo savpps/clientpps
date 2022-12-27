@@ -6,7 +6,7 @@ import { ICreateAccount, inits } from '../create-account.helper';
   templateUrl: './horizontal.component.html',
 })
 export class HorizontalComponent implements OnInit, OnDestroy {
-  formsCount = 5;
+  formsCount = 4;
   account$: BehaviorSubject<ICreateAccount> =
     new BehaviorSubject<ICreateAccount>(inits);
   currentStep$: BehaviorSubject<number> = new BehaviorSubject(1);
@@ -19,6 +19,7 @@ export class HorizontalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
+
   updateAccount = (part: Partial<ICreateAccount>, isFormValid: boolean) => {
     const currentAccount = this.account$.value;
     const updatedAccount = { ...currentAccount, ...part };
@@ -26,6 +27,11 @@ export class HorizontalComponent implements OnInit, OnDestroy {
     this.isCurrentFormValid$.next(isFormValid);
   };
 
+/**
+ * If the next step is greater than the number of forms, then return, otherwise, set the current step
+ * to the next step.
+ * @returns The next step in the form.
+ */
   nextStep() {
     const nextStep = this.currentStep$.value + 1;
     if (nextStep > this.formsCount) {

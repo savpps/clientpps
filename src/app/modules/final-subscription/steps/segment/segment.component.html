@@ -1,0 +1,122 @@
+<!-- <div class="pb-10 pb-lg-12">
+  <h2 class="fw-bolder text-dark">Business Details</h2>
+  <div class="text-gray-400 fw-bold fs-6">
+    If you need more info, please check out
+    <a href="#" class="link-primary fw-bolder">Help Page</a>.
+  </div>
+</div>
+<div [formGroup]="segmentForm">
+
+  <div class="fv-row mb-10">
+    <label class="form-label required">Business Name</label
+    ><input
+      name="businessName"
+      class="form-control form-control-lg form-control-solid"
+      formControlName="businessName"
+    />
+    <div
+      class="fv-plugins-message-container invalid-feedback"
+      *ngIf="
+        segmentForm.get('businessName')?.hasError('required') &&
+        segmentForm.get('businessName')?.touched
+      "
+    >
+      Business Name is required
+    </div>
+  </div>
+  <div class="fv-row mb-10">
+    <label class="d-flex align-items-center form-label"
+      ><span class="required">Shortened Descriptor</span></label
+    ><input
+      name="businessDescriptor"
+      class="form-control form-control-lg form-control-solid"
+      formControlName="businessDescriptor"
+    />
+    <div
+      class="fv-plugins-message-container invalid-feedback"
+      *ngIf="
+        segmentForm.get('businessDescriptor')?.hasError('required') &&
+        segmentForm.get('businessDescriptor')?.touched
+      "
+    >
+      Shortened Descriptor is required
+    </div>
+    <div class="form-text">
+      Customers will see this shortened version of your statement descriptor
+    </div>
+  </div>
+  <div class="fv-row mb-10">
+    <label class="form-label required">Corporation Type</label
+    ><select
+      name="businessType"
+      class="form-select form-select-lg form-select-solid"
+      formControlName="businessType"
+    >
+      <option value="1">S Corporation</option>
+      <option value="1">C Corporation</option>
+      <option value="2">Sole Proprietorship</option>
+      <option value="3">Non-profit</option>
+      <option value="4">Limited Liability</option>
+      <option value="5">General Partnership</option>
+    </select>
+  </div>
+  <div class="fv-row mb-10">
+    <label class="form-label">Business Description</label
+    ><textarea
+      name="businessDescription"
+      class="form-control form-control-lg form-control-solid"
+      rows="3"
+      formControlName="businessDescription"
+    ></textarea>
+  </div>
+  <div class="fv-row mb-0">
+    <label class="fs-6 fw-bold form-label required">Contact Email</label
+    ><input
+      name="businessEmail"
+      class="form-control form-control-lg form-control-solid"
+      formControlName="businessEmail"
+    />
+    <div
+      class="fv-plugins-message-container invalid-feedback"
+      *ngIf="
+        segmentForm.get('businessEmail')?.hasError('required') &&
+        segmentForm.get('businessEmail')?.touched
+      "
+    >
+      Contact Email is required
+    </div>
+    <div
+      class="fv-plugins-message-container invalid-feedback"
+      *ngIf="
+        segmentForm.get('businessEmail')?.hasError('email') &&
+        segmentForm.get('businessEmail')?.touched
+      "
+    >
+      Wrong email format
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="d-flex flex-stack pt-15">
+  <ng-container >
+    <div>
+      <button
+        type="button"
+        class="btn btn-lg btn-primary me-3"
+        [disabled]=""
+      >
+        <span class="indicator-label">
+          <ng-container>
+            Continue {{ " " }}
+            <span
+              [inlineSVG]="
+                './assets/media/icons/duotune/arrows/arr064.svg'
+              "
+              class="svg-icon svg-icon-3 ms-2 me-0"
+            ></span>
+          </ng-container>
+        </span>
+      </button>
+    </div>
+  </ng-container>
+</div> -->

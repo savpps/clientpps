@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { JwtModel } from "../../../models/jwt.model";
+import { UserModel } from "../../../models/user.model";
 import { UserResponseModel } from "../../../models/user_response.model";
 import { LoginRequest } from "../../../request/login.request";
 
@@ -59,8 +60,16 @@ export class AuthFakeService {
       },
     });
   }
+//CREATE USER
+  createUser(user: UserModel): Observable<any> {
+    user.roles = [2]; // Manager
+    user.authToken = 'auth-token-' + Math.random();
+    user.refreshToken = 'auth-token-' + Math.random();
+    user.expiresIn = new Date(Date.now() + 100 * 24 * 60 * 60 * 1000);
+    user.pic = './assets/media/avatars/300-1.jpg';
 
-
+    return this.http.post<UserModel>(`${environment.apiUrl}/register`, user);
+  }
   //RESET PASSWORD
 
   verifyTel(data: {}){
@@ -77,7 +86,8 @@ export class AuthFakeService {
 
  resetPassword(data :{}){
   return this.http.post(`${API_BASE_URL}/reset/password`,data,{headers:{"Content-Type":"Application/json"}});
-   
  }
-
+ createProfile(data:{}){
+  return this.http.post(`${API_BASE_URL}/store/profile`,data,{headers:{"Content-type":"Application/json"}});
+ }
 }

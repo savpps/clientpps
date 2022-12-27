@@ -5,7 +5,7 @@ export class ProfileModel {
     birthday:          Date;
     profession:        string;
     country:           string;
-    region:              string;
+    region:            string;
     town:              string;
     genre:             string;
     validPhoneNumber:  boolean;

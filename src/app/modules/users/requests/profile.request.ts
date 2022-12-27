@@ -6,8 +6,8 @@ export class ProfileRequest {
     profession:        string;
     country:           string;
     town:              string;
-    region:              string;
-    phone:              string;
+    region:             string;
+    phone:              string | undefined;
     user_id:              string |undefined;
 
     setProfileRequest(request: ProfileRequest) {

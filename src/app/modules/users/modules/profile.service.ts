@@ -45,7 +45,7 @@ export class ProfileService implements OnDestroy {
 
     }
 
-    updateProfile(request: ProfileRequest, id: string) {
+    updateProfile(request: ProfileRequest, id: any) {
         return this.profileHttpService.updateProfile(request, id)
             .pipe(
                 map((response: ProfileResponseModel) => {

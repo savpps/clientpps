@@ -2,12 +2,15 @@ import {Injectable, OnDestroy, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {BehaviorSubject, Observable, of, Subscription} from "rxjs";
 import {catchError, finalize, map, switchMap} from "rxjs/operators";
+import { ProfileModel } from "../../models/profile.model";
 import {environment} from "src/environments/environment";
 import {JwtModel} from "../../models/jwt.model";
+import { UserModel } from "../../models/user.model";
 import {UserAuthModel} from "../../models/user_auth.model";
 import {UserResponseModel} from "../../models/user_response.model";
 import {LoginRequest} from "../../request/login.request";
 import {AuthFakeService} from "./fake/auth-fake.service";
+import { ProfileResponseModel } from "../../models/profile_response.model";
 
 export type UserType = UserAuthModel | undefined;
 export type AuthUserType = UserAuthModel | undefined;
@@ -163,5 +166,34 @@ export class AuthService implements OnInit, OnDestroy {
   resetPassword(data:{})
   {
     return this.authService.resetPassword(data);
+  }
+
+
+ registration(user: UserModel): Observable<any> {
+    this.isLoadingSubject.next(true);
+    return this.authService.createUser(user).pipe(
+      map(() => {
+        this.isLoadingSubject.next(false);
+      }),
+      switchMap(() => this.sendTelephone({"phone":user.phone})),
+      catchError((err) => {
+        console.error('err', err);
+        return of(undefined);
+      }),
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  createProfile(profile:ProfileModel):Observable<any>{
+    this.isLoadingSubject.next(true);
+    return this.authService.createProfile(profile).pipe(
+      map((response:any)=>{
+        return response.data;
+      }),
+      catchError((err)=>{
+        console.error('err', err);
+        return of(undefined);
+      })
+    )
   }
 }

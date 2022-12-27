@@ -30,6 +30,12 @@ const Routing: Routes = [
     data: { layout: 'light-header' },
   },
   {
+    path: 'inscription',
+    loadChildren: () =>
+      import('../modules/final-subscription/final-subscription.module').then((m) => m.FinalSubscriptionModule)
+    , data: { layout: 'light-header' },
+  },
+  {
     path: 'crafted/widgets',
     loadChildren: () =>
       import('../modules/widgets-examples/widgets-examples.module').then(

@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
+import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,14 @@ const routes: Routes = [
       {
         path: 'logout',
         component: LogoutComponent,
+      },
+      {
+        path:'verify-code/:phone',
+        component:VerifyCodeComponent
+      },
+      {
+        path:'create-profile/:phone',
+        component:CreateProfileComponent
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login', pathMatch: 'full' },

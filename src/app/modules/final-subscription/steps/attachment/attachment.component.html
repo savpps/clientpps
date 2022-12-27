@@ -1,0 +1,189 @@
+<div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper">
+  <div class="stepper-nav mb-5">
+      <div class="stepper-item" [ngClass]="{current: isProfile === true,completed: isProfile === false}">
+          <h3 class="stepper-title">Création du profile</h3>
+      </div>
+
+      <div class="stepper-item" [ngClass]="{
+    current: isAttachment === true
+  }">
+          <h3 class="stepper-title">Information des pièces justicatifs</h3>
+      </div>
+      <div class="stepper-item" [ngClass]="{
+    current: isSegment === true
+  }">
+          <h3 class="stepper-title">Choix de segment</h3>
+      </div>
+
+      <div class="stepper-item">
+          <h3 class="stepper-title">Fin</h3>
+      </div>
+  </div>
+  <form novalidate="" class="form" [formGroup]="attachementForm" enctype="multipart/form-data">
+    <div>
+      <div class="fv-row mb-10">
+        <label class="form-label required">Type de pièce</label>
+        <select name="typePieceNumber" class="form-select form-select-lg form-select-solid"
+          formControlName="typePieceNumber"
+          [ngClass]="{
+            'is-invalid': attachementForm.controls['typePieceNumber'].invalid,
+            'is-valid': attachementForm.controls['typePieceNumber'].valid
+          }"
+          >
+          <option *ngFor="let piece of pieces" value="{{piece.name}}">{{piece.name}}</option>
+        </select>
+        <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'required',
+          message: 'La pièce est requise ',
+          control: attachementForm.controls['typePieceNumber']
+          }">
+        </ng-container>
+      </div>
+      <div class="fv-row mb-10">
+        <label class="d-flex align-items-center form-label"><span class="required">Numéro d'identification de la
+            pièce</span></label>
+            <input name="pieceNumber" class="form-control form-control-lg form-control-solid"
+          formControlName="pieceNumber"
+          [ngClass]="{
+            'is-invalid':attachementForm.controls['pieceNumber'].invalid,
+            'is-valid':attachementForm.controls['pieceNumber'].valid}"
+          />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Le numéro de pièce est requis ',
+            control: attachementForm.controls['pieceNumber']
+            }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'Le numéro  de la pièce doit avoir au moins 12 caractères',
+            control: attachementForm.controls['pieceNumber']
+            }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'maxlength',
+            message: 'Le numéro  de la pièce doit avoir au plus 15 caractères',
+            control: attachementForm.controls['pieceNumber']
+            }">
+          </ng-container>
+      </div>
+      <div class="fv-row mb-10">
+        <label class="form-label required">Numéro Unique d'identification</label>
+        <input name="nui" class="form-control form-control-lg form-control-solid" 
+        formControlName="nui" 
+        [ngClass]="{
+        'is-invalid':attachementForm.controls['nui'].invalid,
+        'is-valid':attachementForm.controls['nui'].valid
+      }"
+        />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: ' Le numéro unique d\'identification est requis',
+            control: attachementForm.controls['nui']
+            }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'Le numéro  unique d\'identification  doit avoir au moins 12 caractères',
+            control: attachementForm.controls['nui']
+            }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'maxlength',
+            message: 'Le numéro unique d\'identification doit avoir au plus 15 caractères',
+            control: attachementForm.controls['nui']
+            }">
+          </ng-container>
+      </div>
+      
+      <div class="fv-row mb-10">
+        <label class="form-label required">Recto de votre pièce</label>
+        <input type="file" name="pieceRecto" 
+          class="form-control form-control-lg form-control-solid" formControlName="pieceRecto"
+          [ngClass]="{
+            'is-invalid':attachementForm.controls['pieceRecto'].invalid,
+            'is-valid':attachementForm.controls['pieceRecto'].valid
+          }"
+          (change)="fileRecto($event)"/>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: '  La photo de votre carte est requise',
+            control: attachementForm.controls['pieceRecto']
+            }">
+          </ng-container>
+        
+
+      </div>
+    
+      <div class="fv-row mb-10">
+        <label class="form-label required">Verso de votre pièce</label>
+        <input type="file" name="pieceVerso" (change)="fileVerso($event)"
+          class="form-control form-control-lg form-control-solid" formControlName="pieceVerso" 
+          [ngClass]="{
+            'is-invalid':attachementForm.controls['pieceVerso'].invalid,
+            'is-valid':attachementForm.controls['pieceVerso'].valid
+          }"
+          />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'La photo de votre carte est requise',
+            control: attachementForm.controls['pieceVerso']
+            }">
+          </ng-container>
+      </div>
+    
+      <div class="fv-row mb-10">
+        <label class="form-label required">Photo de votre signature</label><input type="file" name="signature"
+          class="form-control form-control-lg form-control-solid" formControlName="signature"
+          [ngClass]="{
+            'is-invalid':attachementForm.controls['signature'].invalid,
+            'is-valid':attachementForm.controls['signature'].valid
+          }"
+          (change)="fileSignature($event)"/>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'La photo de votre signature est requise',
+            control: attachementForm.controls['signature']
+            }">
+          </ng-container>
+      </div>
+    
+      <div class="fv-row mb-10">
+        <label class="form-label required">Photo de profile</label><input type="file" name="avatar"
+          class="form-control form-control-lg form-control-solid" formControlName="avatar"
+          [ngClass]="{
+            'is-invalid':attachementForm.controls['avatar'].invalid,
+            'is-valid':attachementForm.controls['avatar'].valid
+          }" (change)="fileAvatar($event)"/>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'La photo de profile est requise',
+            control: attachementForm.controls['avatar']
+            }">
+          </ng-container>
+      </div>
+    </div>
+  
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button type="button" class="btn btn-primary" [disabled]="attachementForm.invalid"
+        (click)="storeAttachment()">
+        <ng-container *ngIf="!isLoading">Appliquer les modification</ng-container>
+        <ng-container *ngIf="isLoading">
+          <span clas="indicator-progress" [style.display]="'block'">
+            Veillez Patientez...{{ " " }}
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+          </span>
+        </ng-container>
+      </button>
+    </div>
+  </form>  
+  <ng-template #formError let-control="control" let-message="message" let-validation="validation ">
+    <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+      <div class="fv-plugins-message-container">
+        <span role="alert" class="text-danger ms-5">
+          {{ message }}
+        </span>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>

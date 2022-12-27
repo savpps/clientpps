@@ -11,6 +11,8 @@ import { AuthComponent } from './auth.component';
 import { TranslationModule } from '../i18n/translation.module';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
+import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ForgotPasswordComponent,
     LogoutComponent,
     AuthComponent,
+    VerifyCodeComponent,
+    CreateProfileComponent,
   ],
   imports: [
     CommonModule,
